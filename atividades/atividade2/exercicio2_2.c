@@ -1,6 +1,8 @@
 
 #include <stdio.h>
 
+#include <stdio.h>
+
 int main()
 {
     float nota[5];
@@ -16,12 +18,21 @@ int main()
     }
     
     media = soma_notas/ 5;
+    
+    int acima_da_media = 0;
+    int abaixo_da_media = 0;
 
     for(int k = 0; k < 5; k++){
         if(nota[k] > media){
-            printf("Nota do aluno %d: %.2f\n", k + 1, nota[k]);
+            acima_da_media += 1;
+        }
+        else{
+            abaixo_da_media += 1;
         }
     }
+    
+    printf("Pessoas acima da média: %d\n", acima_da_media);
+    printf("Pessoas abaixo da média: %d\n", abaixo_da_media);
 
     return 0;
 }
