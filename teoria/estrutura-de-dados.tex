@@ -59,7 +59,20 @@
 	\subsubsection{O que são e pra que são usadas}
 	Varivel, em linguagens de programação, é basicamente uma posição alocada da memória para guardar uma informação. Variaveis podem ser modificadas pelo programa e devem ser definidas antes de ser utilizadas
 	\subsubsection{Declaração de variaveis em C}
-    Para definir variaveis em C, nós precisamos passar o tipo de dado e nome da variavel, no formato: <tipo de dado> nome-da-variavel. O tipo de dado deve ser aqueles que são aceitos pela linguagem (inteiro, decimais, caracteres, booleanos..), mas como falaremos sobre tipos de dados mais pra frente, não entraremos em detalhes agora. O nome da variavel é algo bem importante a se considerar, pois existem algumas regras e boas práticas importantes quanto a isso:
+    Para definir variaveis em C, nós precisamos passar o tipo de dado e nome da variavel, no formato: 
+    
+    \begin{LARGE}
+    	\begin{center}
+    		<tipo de dado> nome-da-variavel;
+    		
+    	\end{center}
+    \end{LARGE}
+
+    \begin{description}
+     	\item[Obs:] ao fazer da forma acima, estamos apenas declarando a variavel, sem atribuir um valor a ela
+     \end{description}
+    
+    O tipo de dado deve ser aqueles que são aceitos pela linguagem (inteiro, decimais, caracteres, booleanos..), mas como falaremos sobre tipos de dados mais pra frente, não entraremos em detalhes agora. O nome da variavel é algo bem importante a se considerar, pois existem algumas regras e boas práticas importantes quanto a isso:
     \begin{itemize}
     	\item Nomes de variaveis devem iniciar com letras ou underscore 
     	\item Os caracteres da variavel devem ser letras, numeros ou underscore (não utilizar acentos ou simbolos)
@@ -83,7 +96,7 @@
     
     \begin{LARGE}
     	\begin{center}
-    		<tipo de dados> nome-variavel = valor
+    		<tipo de dados> nome-variavel = valor;
     	\end{center}
     \end{LARGE}
     
@@ -117,7 +130,12 @@
 		
 	\end{figure}
 	
-	Ao fazer isso, em nosso terminal será exibido o texto que digitamos dentro do printf ("Esse texto será escrito na tela). Veja
+	Ao fazer isso, em nosso terminal será exibido o texto que digitamos dentro do printf ("Esse texto será escrito na tela). Veja:
+	
+	\begin{center}
+		
+		\includegraphics[width=7cm,height=2cm,keepaspectratio=false]{imagens/outputc.png}
+	\end{center}
 	
 	\subsubsection{Uso do escape no printf()}
 	Um detalhe é que algo que podemos utiliza no printf é caracter de escape . Esse caracter é utilizado sempre ao final do que que queremos escrever na saída e ele serve para quebrar a linha após a saída. Veja:
@@ -130,8 +148,62 @@
 	\end{figure}
 	
 	
-	Se fizermos vários printf, por exemplo, e não usarmos o caracter de escape em nenhum deles, o que escrevemos nos prints, ficará tudo junto. Veja
+	Se fizermos vários printf, por exemplo, e não usarmos o caracter de escape em nenhum deles, o que escrevemos nos prints, ficará tudo junto. Veja:
+	
+	\begin{figure}[ht]
+		\centering
+		% ajusta a largura da imagem para ser quadrada (ex: 5cm x 5cm)
+		\includegraphics[width=6cm,height=3cm,keepaspectratio=false]{imagens/noescape.png}
+	\end{figure}
+	
+	\subsubsection{Exibindo valores de variaveis no output}
+	Se quisermos que em nosso output seja usada alguma variavel, temos que utilizar o seguinte formato:
+	
+	\begin{figure}[ht]
+		\centering
+		% ajusta a largura da imagem para ser quadrada (ex: 5cm x 5cm)
+		\includegraphics[width=9cm,height=2cm,keepaspectratio=false]{imagens/tipo_saida.png}
+	\end{figure}
+	
+	Isso acima significa que se quisermos passar no output uma variavel que tenha o tipo int, nós teríamos que passar o tipo de saida  dentro das aspas duplas e depois separar por virgula passando a nossa variavel. Mas você deve estar se perguntando: Como assim tipos de saida? Veja abaixo os tipos de saida que usaremos no output (printf):
+	
+	\begin{center}
+
+		\includegraphics[width=8cm,height=3cm,keepaspectratio=false]{imagens/comando_saida.png}
+	\end{center}
+	
+	Ou seja, seguindo o exemplo da variavel de tipo int que tinhamos dado, se quiséssemos exibi-la no output (printf), faríamos:
+	
+	\begin{LARGE}
+		\begin{center}
+			printf("porcentagemd", variavel);
+		\end{center}
+	\end{LARGE}
+	
 	\subsubsection{Entrada com scanf()}
+	Agora, falando sobre entrada de dados, o comando que utilizamos para passar dados para o nosso programa é o scanf(). Esse comando permite realizar a leitura de dados da entrada padrão (teclado). Sua estrutura é a seguinte:
+	
+	\begin{center}
+		
+		\includegraphics[width=7cm,height=2cm,keepaspectratio=false]{imagens/inputar.png}
+	\end{center}
+	
+	Sendo que, os tipos de entrada são praticamente os mesmos que vimos nos tipos de saida. Veja:
+	
+	\begin{center}
+		
+		\includegraphics[width=7cm,height=2cm,keepaspectratio=false]{imagens/tipos_entrada.png}
+	\end{center}
+	
+	Podemos ainda realizar a leitura de mais de um valor (assim como podemos fazer o output de mais de um valor). É bem parecido com o output também. Veja:
+	
+	
+	\begin{center}
+		
+		\includegraphics[width=7cm,height=2cm,keepaspectratio=false]{imagens/inputar_varios.png}
+	\end{center}
+	
+	
 	\subsection{Contantes}
 	Assim como variaveis, constantes também armazenam um valor na memória do computador. A principal diferença para as variaveis é que esse valor não será alterado. Outra coisa é que para as constantes é obrigatoria a atribuição de valor, diferente das variaveis que podemos simplesmente declará-las sem dar um valor
 	\subsubsection{Declaração de constantes}
@@ -151,7 +223,56 @@
 	\subsection{Arrays}
 	\subsection{Struct - Criação de tipos}
 	
-	\chapter{Falando sobre ponteiros}
+	\chapter{Acerca de ponteiros}
+	\section{O porquê de estudar esse topico}
+	Agora, iniciaremos um tópico mais avançado, que são os ponteiros. É muito importante entendermos sobre esse conceito porque várias das estruturas de dados que aprenderemos nesta disciplina dependem deles (listas, pilhas, filas, árvores e grafos), então sem entender isso, não iremos para frente
+	\section{O que são e como usá-los}
+	\subsection{O que é}
+	Conceitualmente, um ponteiro é uma variavel que armazena o endereço de memoria de outra variavel. Ou seja, diferentemente das variaveis comuns, um ponteiro não irá armazenar um valor como um caracter, por exemplo, mas sim, um endereço de memória.
+	\subsection{Declaração de ponteiros}
+	Para criar um ponteiro, a estrutura lembra bastante a forma como nós criamos as variaveis, mas com pequenas mudanças. Veja como declaramos um ponteiro:
+	
+	\begin{LARGE}
+		\begin{center}
+			<tipo de dado> *nome ponteiro;
+		\end{center}
+	\end{LARGE}
+	
+	Perceba que para declarar um ponteiro, assim como nas variaveis, nós temos que usar um tipo de dado. Isso acontece porque nós estamos indicando para o ponteiro que estamos criando o tipo de dado do lugar da memória que ele vai apontar. Isso é importante porque não é muito aconcelhavel você ter um ponteiro inteiro e apontar para um char, por exemplo.
+	
+	Um detalhe é que podemos criar o nosso ponteiro apontando ele para NULL, para que ele não aponte para nenhum lugar (para que consigamos administrar para onde ele aponta depois). Fazendo isso, a declaração ficaria:
+	
+	\begin{LARGE}
+		\begin{center}
+			<tipo de dado> *nome ponteiro = NULL;
+		\end{center}
+	\end{LARGE}
+	
+	Se não declararmos da maneira acima e utilizarmos a primeira versão de declaração (<tipo de dado> *nome ponteiro;), o que acontece é que nosso ponteiro irá apontar para um endereço de memória aletório.
+	
+	\subsection{Detalhe após a declaração}
+	
+	Após declarado o ponteiro, algo importante de se dizer é que	
+	
+	
+	\subsection{Exemplo de uso}
+	Veja abaixo um exemplo de uso de ponteiros:
+	
+	\begin{figure}[ht]
+		\centering
+		% ajusta a largura da imagem para ser quadrada (ex: 5cm x 5cm)
+		\includegraphics[width=7cm,height=4cm,keepaspectratio=false]{imagens/ponteiro.png}
+		
+	\end{figure}
+	
+	Acima, o que acontece é que:
+	
+	\begin{itemize}
+		\item int a = 15; -> Você está colocando o valor 15 dentro da variável a.
+	\end{itemize}
+	
+	
+	
 	
 
 \end{document}
