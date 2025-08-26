@@ -207,13 +207,49 @@
 	\subsection{Contantes}
 	Assim como variaveis, constantes também armazenam um valor na memória do computador. A principal diferença para as variaveis é que esse valor não será alterado. Outra coisa é que para as constantes é obrigatoria a atribuição de valor, diferente das variaveis que podemos simplesmente declará-las sem dar um valor
 	\subsubsection{Declaração de constantes}
-	Para declarar uma constante existem duas formas. Na primeira, devemos  utilizar define nome-costante <valor> no começo do programa. Veja:
+	Para declarar uma constante existem duas formas. Na primeira, devemos  utilizar define nome-costante <valor> no começo do programa. Uma detalhe é que neste caso, não usaremos ponto e virgula no final. Veja:
 	
-	Outra forma é fazer const <tipo> nome = valor
+	\begin{center}
+		
+		\includegraphics[width=5cm,height=4cm,keepaspectratio=false]{imagens/define.png}
+	\end{center}
+	
+	Outra forma é fazer: const <tipo> nome = valor;. Como você pôde ver, nesse caso, temos que usar o ponto e vírgula. Veja:
+	
+	\begin{center}
+	
+	\includegraphics[width=5cm,height=4cm,keepaspectratio=false]{imagens/const.png}
+	\end{center}	
+	
+	\subsubsection{Curiosidade sobre constantes}
+	Já chegamos a falar sobre caracteres de escape (no caso, falamos apenas do barran). Os caracteres de escape são constantes pre-definidas. Veja cada um deles:
+	
+	\begin{center}
+		
+		\includegraphics[width=7cm,height=6cm,keepaspectratio=false]{imagens/outros_escape.png}
+		
+	\end{center}
+	
+	
 	\subsection{Operadores}
 	Os operadores são usados para desenvolver diferentes tipos de operações. Com eles podemos fazer operações matematicas, comparativas, logicas e etc. Veremos acerca de cada um dos operadores a seguir
 	\subsubsection{Operadores aritméticos}
+	Os operadores aritméticos são aqueles que operam sobre numeros e/ou sobre expressões que tem como resultado valores numéricos. Veja os operadores:
+	
+	\begin{center}
+		
+		\includegraphics[width=6cm,height=3cm,keepaspectratio=false]{imagens/operadoresa.png}
+		
+	\end{center}
+	
+	Um detalhe é que as operações seguem a mesma ordem da matemática. A prioridade são as operações de multiplicação e divisão em detrimento das de soma e subtração.
+	
+	Outro detalhe é que na divisão, se o numerador e denominador forem inteiros, o compilador retornará apenas a parte inteira da divisão
+	
 	\subsubsection{Operadores relacionais}
+	São aqueles que verificam a magnitude (maior/menor) e/ou igualdades entre dois valores e/ou expressões. Esses operadores retornam verdadeiro (1) e falso (0) (ou seja, um valor booleano). Veja cada um deles:
+	
+	
 	\subsubsection{Operadores lógicos}
 	\subsection{Coerção de tipos}
 	\subsection{Condicionais}
@@ -228,7 +264,7 @@
 	Agora, iniciaremos um tópico mais avançado, que são os ponteiros. É muito importante entendermos sobre esse conceito porque várias das estruturas de dados que aprenderemos nesta disciplina dependem deles (listas, pilhas, filas, árvores e grafos), então sem entender isso, não iremos para frente
 	\section{O que são e como usá-los}
 	\subsection{O que é}
-	Conceitualmente, um ponteiro é uma variavel que armazena o endereço de memoria de outra variavel. Ou seja, diferentemente das variaveis comuns, um ponteiro não irá armazenar um valor como um caracter, por exemplo, mas sim, um endereço de memória.
+	Conceitualmente, um ponteiro é uma variavel que armazena o endereço de memoria de outra variavel. Ou seja, diferentemente das variaveis comuns, um ponteiro não irá armazenar um valor como um caracter, por exemplo, mas sim, um endereço de memória.	
 	\subsection{Declaração de ponteiros}
 	Para criar um ponteiro, a estrutura lembra bastante a forma como nós criamos as variaveis, mas com pequenas mudanças. Veja como declaramos um ponteiro:
 	
@@ -250,9 +286,20 @@
 	
 	Se não declararmos da maneira acima e utilizarmos a primeira versão de declaração (<tipo de dado> *nome ponteiro;), o que acontece é que nosso ponteiro irá apontar para um endereço de memória aletório.
 	
+	Um outro detalhe bem interessante é que podemos fazer com que nosso ponteiro aponte para o endereço de memória de uma variavel já existente. Veja:
+	
+	\begin{LARGE}
+		\begin{center}
+			<tipo de dado> *nome ponteiro = a;
+		\end{center}
+	\end{LARGE}
+	
+	
+	Ou seja, o endereço de memória que nosso ponteiro irá apontar, será o endereço da variavel a (esse  significa que estamos nos referindo ao endereço de memoria da variavel a. Desta forma, o ponteiro b apontará para o endereço de memoria de a).
+	
 	\subsection{Detalhe após a declaração}
 	
-	Após declarado o ponteiro, algo importante de se dizer é que	
+	Quando declaramos um ponteiro(exemplo: int *a), algo importante de se dizer é que se utilizarmos *a em qualquer outro trecho do nosso código, nós não vamos estar usando o ponteiro em si, mas sim o valor que está no endereço apontado pelo ponteiro a. Veja um exemplo:
 	
 	
 	\subsection{Exemplo de uso}
