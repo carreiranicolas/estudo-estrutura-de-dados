@@ -8,6 +8,8 @@
 \usepackage{setspace}    % Para espaçamento
 \usepackage{lipsum}      % Texto de exemplo (remova se não precisar)
 \usepackage{graphicx}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Código}
 
 
 \begin{document}
@@ -111,6 +113,9 @@
 	Basicamente numeros decimais com precisão simples (em C a parte decimal usa ponto e não vírgula)
 	\subsubsection{Double}
 	Também números decimais, mas com precisão dupla. É usados para numeros muito pequenos (cientificos por exemplos) ou muito grandes
+	
+	\subsubsection{Bool}
+	Esse tipo de dados é muito interessante, pois ele pode assumir dois valores: verdadeiro ou false (true ou false). Em outras linguagens, nós temos literalmente um valor True e False. No entanto, na linguagem C nós não temos True e False, mas podemos representá-los como 1 e 0, respectivamente.
 	\subsubsection{Outros tipos}
 	Na imagem abaixo, você poderá ver alguns outros que são utilizados:
  	\begin{center}
@@ -247,14 +252,148 @@
 	Outro detalhe é que na divisão, se o numerador e denominador forem inteiros, o compilador retornará apenas a parte inteira da divisão
 	
 	\subsubsection{Operadores relacionais}
-	São aqueles que verificam a magnitude (maior/menor) e/ou igualdades entre dois valores e/ou expressões. Esses operadores retornam verdadeiro (1) e falso (0) (ou seja, um valor booleano). Veja cada um deles:
+	São aqueles que verificam a magnitude (maior/menor) e/ou igualdades entre dois valores e/ou expressões. Esses operadores retornam verdadeiro (1) ou falso (0) (ou seja, um valor booleano). Veja cada um deles:
+	
+	\begin{center}
+		
+		\includegraphics[width=6cm,height=3cm,keepaspectratio=false]{imagens/relacionais.png}
+		
+	\end{center}
 	
 	
 	\subsubsection{Operadores lógicos}
+	
+	Os operadores lógicos nos permitem representar situações lógicas unindo duas mais expressões relacionais simples em uma composta e nos retornam verdadeiro (1) ou falso (0). Veja cada um deles:
+	
+	\begin{center}
+		
+		\includegraphics[width=7cm,height=2cm,keepaspectratio=false]{imagens/logicos.png}
+		
+	\end{center}
+	
+	\subsubsection{Operadores de atribuição simplificada}
+	Muitas vezes em nosso código nós temos que atribuir valores a nossa variavel. Uma forma de fazer isso de maneira mais fácil é utilizando os operadores de atribuição simplificada. Com eles, podemos adicionar valores a nossa variavel de forma muito mais simples. Veja cada um deles:
+	
+	\begin{center}
+		
+		\includegraphics[width=7cm,height=2cm,keepaspectratio=false]{imagens/operadoresatribuicaosimp.png}
+		
+	\end{center}
+	
+	
+	\subsubsection{Operadores de pré e pós incremento}
+	Esses operadores podem ser utilizados sempre que for necessário somar uma unidade (incremento) ou subtrair uma unidade (decremento) a determinado valor. Veja cada um deles:
+	
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=2cm,keepaspectratio=false]{imagens/pospre.png}
+		
+	\end{center}
+	
+	Um detalhe é que como você pode ver na imagem acima, podemos utilizar o operador antes de depois da variavel, mas qual a diferença? Veja abaixo:
+	
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=3cm,keepaspectratio=false]{imagens/expliqprepos.png}
+		
+	\end{center}
+	
 	\subsection{Coerção de tipos}
+	Lembra quando falamos anteriormente que se dividirmos um numero inteiro por outro inteiro seu resultado sempre será inteiro, desconsiderando assim a parte decimal? Podemos contornar isso utilizando o casting. O casting é aplicado sobre uma expressão aritmética e força o resultado da expressão a ser de um tipo especificado. Veja as diferentes formas de utilizar o casting:
+	
+		
+	
+	\subsubsection{Type casting explicito}
+	Nós faremos a conversão de tipo no resultado da expressão:
+	
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+	int a = 5, b = 2;
+	float resultado = (float)a / b;
+	printf("%f\n", resultado);  // saida: 2.500000
+			
+			
+		\end{lstlisting}
+	\end{center}
+	
+	\subsubsection{Type casting nos operandos}
+	Faremos o casting nos dois operandos da operação para obter o resultado no tipo que queremos
+	
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+	double resultado = (double)a / (double)b;
+	printf("%lf\n", resultado); // saida: 2.500000
+
+			
+			
+		\end{lstlisting}
+	\end{center}
+	
 	\subsection{Condicionais}
+	Certo. Agora falaremos sobre condicionais. Condicional é basicamente uma mudança de fluxo em nosso código. Caso uma determinada expressão atenda determinada condição, nosso código seguirá por um fluxo e caso contrário, seguirá para outro fluxo. Existem diferentes maneiras de se utilizar as condicionais em nosso código. Veremos cada uma delas abaixo.
 	\subsubsection{If-else}
+	A estrutura do if-else é feita da seguinte forma em nosso código:
+	
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+	if(condicao){
+		sequencia de comandos 1;
+	}
+	else{
+		sequencia de comandos 2;
+	}
+			
+		\end{lstlisting}
+	\end{center}
+	
+	
+	O que acontece acima é que se a condição for satisfeita, ou seja, for verdadeira (tiver valor 1), nosso programa entrará nesse fluxo e executará o código dentro da condição. Caso contrário, ou seja, caso a condição não for satisfeita (for falsa (ter valor 0)), entraremos no fluxo do else.
+	
+	Um detalhe é que alem do if e do else, podemos ter ainda o else if, onde caso a condição do if não for satisfeita, haverá a condiçao do else if a ser satisfeita e aí se ela não satisfeita também, iremos para o else. Veja:
+	
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+	if(condicao){
+		sequencia de comandos 1;
+	}
+	else if(condicao){
+		sequencia de comandos 2;
+	}
+	else{
+		sequencia de comandos 3;
+	}
+			
+		\end{lstlisting}
+	\end{center}
+	
 	\subsubsection{Swicth-case}
+	O switch-case é outra estrutura de controle de fluxo de código. Sua estrutura é a seguinte:
+	
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+	switch(expressao){
+		case valor 1:
+			sequencia de comandos 1;
+			break;
+		
+		case valor k:
+			sequencia de comandos k;
+			break;
+		...
+		default:
+			sequencia de comandos padrao;
+			break;
+		
+			
+		\end{lstlisting}
+	\end{center}
+	
+	O o switch, como podemos ver acima é próprio para testar uma variavel em relação a diversos valores pré-estabelecidos. Além disso, como podemos ver acima o default irá desempenhar o valor que o else desempenha na estrutura if-else
 	\subsection{Loops}
 	\subsection{Arrays}
 	\subsection{Struct - Criação de tipos}
