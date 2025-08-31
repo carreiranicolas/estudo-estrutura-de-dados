@@ -395,8 +395,72 @@
 	
 	O o switch, como podemos ver acima é próprio para testar uma variavel em relação a diversos valores pré-estabelecidos. Além disso, como podemos ver acima o default irá desempenhar o valor que o else desempenha na estrutura if-else
 	\subsection{Loops}
+	Agora falando sobre loops, o nome já entrega. Os loops serão responsáveis por repetir um bloco de código a partir de uma condição. Enquanto a condição for verdadeira, o bloco de código permanecerá se repetindo. Existem diferentes tipos de loops. Vamos a cada um deles.
+	
+	\subsubsection{While}
+	\subsubsection{Do-While}
+	\subsubsection{For}
 	\subsection{Arrays}
+	Quando vimos sobre variaveis, estudamos que elas podem armazenar um valor. Sempre que tentamos armazenar um novo valor dentro da variavel o antigo valor é sobrescrito (e portanto, perdido). Agora, pense: E se quisessemos armazenar mais de um valor em uma variavel? Para isso, usamos os arrays, que é basicamente uma sequencia de elementos do mesmo tipo, onde cada elemento é identificado por um indice. Ou seja, quando criamos um array, nós alocamos um espaço na memória (onde, quanto maior o tamanho do array, que é a quantidade de elementos que ele pode armazenar, maior o espaço de memoria alocado) e podemos armazenar dentro dele varios valores do mesmo tipo (os valores podem ser acessados por meio do indice do elemento dentro do array, que é basicamente a posição do elemento lá dentro). Um exemplo que pode fazer você entender melhor é: suponhamos que queiramos armazenar em um local a nota de 5 alunos. Para isso, poderiamos usar um array.
+	\subsubsection{Declaração de arrays}
+	Para declarar um array, nós fazemos da seguinte forma:
+	
+	\begin{LARGE}
+		\begin{center}
+			<tipo-array> nome-array[tamanho];
+		\end{center}
+	\end{LARGE}
+	
+	Ou seja, primeiro nós precisamos declarar o tipo do array, que será o tipo dos valores que aquele array irá armazenar, depois passamos o nome do array e depois passamos o tamanho do array, ou seja, a quantidade de elementos que ele poderá armazenar.
+	
+	
+	
+	\subsubsection{Inserindo e acessando valores dentro de arrays}
+	Com o array declarado, caso quisermos inserir algum valor no array, basta fazer: 
+	
+	\begin{LARGE}
+		\begin{center}
+			nome-array[indice] = valor;
+		\end{center}
+	\end{LARGE}
+	Lembrando que o indice é a posição do elemento dentro do array. Se tivessemos um array de tamanho 10 e quisessemos inserir um valor no sexto elemento, faríamos: nome-array[5] = valor; (uma vez que os indices começariam do 0 e iriam até o 9).
+	
+	Para acessar valores de um array, basta fazer:
+	
+	
+	\begin{LARGE}
+		\begin{center}
+			nome-array[indice];
+		\end{center}
+	\end{LARGE}
+	
+	
+	\subsubsection{Observações}
+	Em C e C++, se tivermos um array que pode armazenar 10 elementos e tentarmos armazenar 11 elementos, o elemento que sobrar irá ser armazenado em um espaço da memória que não pertence ao array, o que causa comportamento indefinido (pode sobrescrever dados, travar o programa e entre outros)
+	
+	Outro detalhe é que se tivermos um array de 10 elementos (ou seja, teremos 10 indices, do 0 ao 9) e tentarmos acessar o indice 10 (11º elemento) o que acontecerá (em C e C++) é que iremos acessar um elemento da memória que não pertence oficialmente ao array, o que pode retornar "Lixos de memória".
+	
+	
 	\subsection{Struct - Criação de tipos}
+	Agora, falaremos sobre structs, estamos falando de uma composição de variaveis de outros tipos que formam um "novo tipo de dado". Assim como temos o tipo inteiro, float e etc, podemos "criar" um outro tipo que será um agrupamento de dados.
+	\subsubsection{Declaração}
+	
+	\subsubsection{Inserindo valores e acessando valores}
+	
+	\subsection{Comando typedef}
+	O comando typedef nos permite "dar um alias" para os tipos de dados existentes na linguagem C. Se temos, por exemplo, o tipo float, mas queremos que ele se chame flutuante, poderíamos fazer isso. 
+	\subsubsection{Como usar}
+	Para usar, basta fazer o seguinte:
+	
+	\begin{LARGE}
+		\begin{center}
+			typedef <tipo-de-dado> <alias>;
+		\end{center}
+	\end{LARGE}
+	
+	O comando acima "da um alias" a um tipo de dado existente. Um detalhe é que o comando acima deve estar no topo do programa, juntamente com a inclusão das bibliotecas.
+	
+	\subsubsection{Exemplo}
 	
 	\chapter{Acerca de ponteiros}
 	\section{O porquê de estudar esse topico}
