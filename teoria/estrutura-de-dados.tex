@@ -529,9 +529,33 @@
 	\subsection{Busca binária}
 	
 	\section{Algoritmos de ordenação}
-	\subsection{Quicksort}
+	Após uma base de dados estar construída pode ser necessário ordena-la. A ordenação dos dados PODE ser um passo preliminar para pesquisá-los (para utilizar o algoritmo de busca binária, por exemplo, precisamos que os dados estejam ordenados). Dada essa introdução, veremos alguns algoritmos de ordenação de dados.
 	\subsection{Bubblesort}
-	\subsection{Mergesort}
+	\subsubsection{Como funciona?}
+	O algoritmo de ordenação bublesort  é o mais simples dos algoritmos de ordenção. O que ele faz é:
+	
+	\begin{itemize}
+		\item Comparação de dois números
+		\item Se o da esquerda for maior, os elementos devem ser trocados
+		\item Desloca-se uma posição à direita
+	\end{itemize}
+	
+	Exemplo: Estamos percorrendo um vetor e na posição da esquerda nós temos o número 10 e na posição da direita nós temos o número 8. Como 8 é menor que 10, iremos fazer a troca. No lugar do 10, teremos o 8 e no lugar do 8 teremos o 10, ou seja, ele irá se deslocar uma posição à direita.
+	
+	A medida que o algoritmo avança, os itens maiores "surgem como uma bolha" na extremidade superior do vetor (à direita do vetor). É por isso que o é o  algoritmo da bolha (bolha = bubble)
+	
+	Podemos ver como ele funciona visualmente a partir do link a seguir: https://visualgo.net/en/sorting 
+	
+	Como dissémos, o algoritmo vai percorrendo o vetor e fazendo as trocas, mas ele pode ser que ele tenha que percorrer o vetor para fazer isso mais de uma vez (na maioria das vezes). Apesar disso, uma coisa que ele garante é que após a primeira rodada que ele percorre, o primeiro elemento estará no final.
+	
+	Um algoritmo com 10 elementos, faz 9 comparações na primeira rodada, 8 na segunda, 7 na terceira e etc. Dessa forma, para 10 itens: 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45
+	\subsubsection{Implementação}
+	\subsection{Selection sort}
+	\subsection{Insertion sort}
+	\subsection{Shell sort}
+	\subsection{Merge sort}
+	\subsection{Quicksort}
+	
 	
 	
 	
