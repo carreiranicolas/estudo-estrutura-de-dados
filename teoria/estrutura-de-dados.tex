@@ -8,6 +8,7 @@
 \usepackage{setspace}    % Para espaçamento
 \usepackage{lipsum}      % Texto de exemplo (remova se não precisar)
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{listings}
 \renewcommand{\lstlistingname}{Código}
 
@@ -544,11 +545,35 @@
 	
 	A medida que o algoritmo avança, os itens maiores "surgem como uma bolha" na extremidade superior do vetor (à direita do vetor). É por isso que o é o  algoritmo da bolha (bolha = bubble)
 	
-	Podemos ver como ele funciona visualmente a partir do link a seguir: https://visualgo.net/en/sorting 
+	Podemos observar essa algoritmo de forma visual a partir \href{ https://visualgo.net/en/sorting}{deste link}. Aqui vai um exemplo rápido com algumas imagens:
+
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.45\textwidth]{imagens/bubble-sort1.png}
+		\hfill
+		\includegraphics[width=0.45\textwidth]{imagens/bubble-sort2.png}
+
+	\end{figure}
 	
-	Como dissémos, o algoritmo vai percorrendo o vetor e fazendo as trocas, mas ele pode ser que ele tenha que percorrer o vetor para fazer isso mais de uma vez (na maioria das vezes). Apesar disso, uma coisa que ele garante é que após a primeira rodada que ele percorre, o primeiro elemento estará no final.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.45\textwidth]{imagens/bubble-sort3.png}
+		\hfill
+		\includegraphics[width=0.45\textwidth]{imagens/bubble-sort4.png}
+		
+	\end{figure}
+
+	Na primeira imagem, podemos ver o nosso vetor de forma desordenada, aí o que acontecerá com a aplicação do algoritmo de bubble sort é que pegaremos o número da esquerda (no caso 29) e iremos comparar com o segundo. Se o segundo número for menor, jogamos o maior para a direita (assim como podemos ver na segunda imagem, onde o número 29 foi para a direita e o 10, que era menor, foi para a esquerda). Após isso, faremos a comparação novamente entre o número da esquerda e o da direita. Agora, estamos comparando o 29 (esquerda) e o 14 (direita), então como o número da esquerda é maior (29), iremos joga-lo para a direita e o número que estava na direita virá para a esquerda, assim como podemos ver na terceira imagem. Por fim, vamos fazer a comparação novamente entre o número da esquerda e o da direita. Dessa vez o número da esquerda é menor que o da direita, então não haverá troca, aí passaremos para o próximo número (37) para realizar novas comparações, mas como o vetor acabou, então finalizamos por aqui.
+	
+	Portanto, o algoritmo vai percorrendo o vetor e fazendo as trocas, mas pode ser que ele tenha que percorrer o vetor mais de uma vez para fazer a ordenação (na maioria das vezes é o que acontece, apesar de termos dado sorte no exemplo que demos acima). Apesar disso, uma coisa que ele garante é que após a primeira rodada o maior elemento do array será movido para a última posição do array.
 	
 	Um algoritmo com 10 elementos, faz 9 comparações na primeira rodada, 8 na segunda, 7 na terceira e etc. Dessa forma, para 10 itens: 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45
+	
+	\subsubsection{Complexidade}
+	Com relação ao Big-O desse algoritmo, ele é um O($n^{2}$), ou seja, o tempo de execução dele é relativamente grande. 
+	
+	
 	\subsubsection{Implementação}
 	\subsection{Selection sort}
 	\subsection{Insertion sort}
