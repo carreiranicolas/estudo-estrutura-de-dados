@@ -535,13 +535,14 @@
 	\subsubsection{Como funciona?}
 	O algoritmo de ordenação bublesort  é o mais simples dos algoritmos de ordenção. O que ele faz é:
 	
-	\begin{itemize}
+	\begin{enumerate}
 		\item Comparação de dois números
 		\item Se o da esquerda for maior, os elementos devem ser trocados
 		\item Desloca-se uma posição à direita
-	\end{itemize}
+	\end{enumerate}
 	
-	Exemplo: Estamos percorrendo um vetor e na posição da esquerda nós temos o número 10 e na posição da direita nós temos o número 8. Como 8 é menor que 10, iremos fazer a troca. No lugar do 10, teremos o 8 e no lugar do 8 teremos o 10, ou seja, ele irá se deslocar uma posição à direita.
+	
+	Exemplo: Estamos percorrendo um vetor e na posição da esquerda nós temos o número 10 e na posição da direita nós temos o número 8. Como 8 é menor que 10, iremos fazer a troca. No lugar do 10, teremos o 8 e no lugar do 8 teremos o 10. Feito isso, ele estará na posição onde está o valor 8, então ele irá se deslocar uma posição à direita (que é onde estará o valor 10).
 	
 	A medida que o algoritmo avança, os itens maiores "surgem como uma bolha" na extremidade superior do vetor (à direita do vetor). É por isso que o é o  algoritmo da bolha (bolha = bubble)
 	
@@ -566,15 +567,135 @@
 
 	Na primeira imagem, podemos ver o nosso vetor de forma desordenada, aí o que acontecerá com a aplicação do algoritmo de bubble sort é que pegaremos o número da esquerda (no caso 29) e iremos comparar com o segundo. Se o segundo número for menor, jogamos o maior para a direita (assim como podemos ver na segunda imagem, onde o número 29 foi para a direita e o 10, que era menor, foi para a esquerda). Após isso, faremos a comparação novamente entre o número da esquerda e o da direita. Agora, estamos comparando o 29 (esquerda) e o 14 (direita), então como o número da esquerda é maior (29), iremos joga-lo para a direita e o número que estava na direita virá para a esquerda, assim como podemos ver na terceira imagem. Por fim, vamos fazer a comparação novamente entre o número da esquerda e o da direita. Dessa vez o número da esquerda é menor que o da direita, então não haverá troca, aí passaremos para o próximo número (37) para realizar novas comparações, mas como o vetor acabou, então finalizamos por aqui.
 	
-	Portanto, o algoritmo vai percorrendo o vetor e fazendo as trocas, mas pode ser que ele tenha que percorrer o vetor mais de uma vez para fazer a ordenação (na maioria das vezes é o que acontece, apesar de termos dado sorte no exemplo que demos acima). Apesar disso, uma coisa que ele garante é que após a primeira rodada o maior elemento do array será movido para a última posição do array.
+	Portanto, o algoritmo vai percorrendo o vetor e fazendo as trocas, mas pode ser que ele tenha que percorrer o vetor mais de uma vez para fazer a ordenação (na maioria das vezes é o que acontece, apesar de termos dado sorte no exemplo que demos acima). Apesar disso, uma coisa que ele garante é que após a primeira rodada o maior elemento do array será movido para a última posição do array e isso faz com que, para um vetor com n elementos, o Bubble Sort precise de no máximo n-1 passagens. Isso acontece porque a cada passagem, o maior elemento restante é movido para sua posição final correta. Após a n-1ª passagem, os n-1 maiores elementos já estarão ordenados. Por consequência, o único elemento que sobrou, o menor de todos, já estará automaticamente na primeira posição, que é a sua posição correta. Sendo assim, não há necessidade de uma n-ésima passagem.
 	
-	Um algoritmo com 10 elementos, faz 9 comparações na primeira rodada, 8 na segunda, 7 na terceira e etc. Dessa forma, para 10 itens: 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45
 	
 	\subsubsection{Complexidade}
-	Com relação ao Big-O desse algoritmo, ele é um O($n^{2}$), ou seja, o tempo de execução dele é relativamente grande. 
+	Com relação ao Big-O desse algoritmo, ele é um O($n^{2}$), ou seja, o tempo de execução dele é relativamente grande:
+	
+	\begin{center}
+		
+		\includegraphics[width=7.5cm,height=4cm,keepaspectratio=false]{imagens/bubble_comple.png}
+		
+	\end{center}
+	
+	A razão que faz esse algoritmo ser um O($n^{2}$) é o fato de ter dois loops aninhados que o algoritmo usa para percorrer o vetor (veremos na implementação)
 	
 	
 	\subsubsection{Implementação}
+	
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+#include <stdio.h>
+	
+//Funcao para trocar dois elementos de lugar
+void trocar(int *a, int *b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+	
+//Funcao que implementa o Bubble Sort
+void bubbleSort(int vetor[], int n) {
+	int i, j;
+	int houveTroca;
+		
+	//O algoritmo precisa repetir varias vezes
+	//ate que nao haja mais trocas
+	for (i = 0; i < n - 1; i++) {
+		houveTroca = 0; //no comeco da rodada, nao houve troca ainda
+			
+		//Percorre o vetor ate a penultima posicao comparando os vizinhos
+		for (j = 0; j < n - i - 1; j++) {
+			if (vetor[j] > vetor[j + 1]) {
+				trocar(&vetor[j], &vetor[j + 1]);
+				houveTroca = 1; // se houve troca, marcamos
+			}
+		}
+			
+		//Se nao houve troca, significa que o vetor ja esta ordenado
+		if (houveTroca == 0) {
+			break;
+		}
+	}
+}
+	
+//Funcao para imprimir o vetor
+void imprimirVetor(int vetor[], int n) {
+	for (int i = 0; i < n; i++) {
+		printf("%d ", vetor[i]);
+	}
+	printf("\n");
+}
+	
+int main() {
+	int vetor[] = {64, 34, 25, 12, 22, 11, 90};
+	int n = sizeof(vetor) / sizeof(vetor[0]);
+		
+	printf("Vetor original: ");
+	imprimirVetor(vetor, n);
+		
+	bubbleSort(vetor, n);
+		
+	printf("Vetor ordenado: ");
+	imprimirVetor(vetor, n);
+		
+	return 0;
+}
+				
+		\end{lstlisting}
+	\end{center}
+	
+	Explicação da implementação:
+	
+	\begin{enumerate}
+		\item void trocar(int *a, int*b)
+		
+		Essa é uma função auxiliar que serve para trocar os valores de duas variáveis inteiras.
+		
+		\begin{itemize}
+			\item int *a e int *b: Os parâmetros são ponteiros para inteiros, e não as variáveis em si. Como sabemos, um ponteiro é uma variável que armazena o endereço de memória de outra variável. Usamos ponteiros aqui porque, para a função trocar realmente modificar os valores das variáveis que a chamaram, ela precisa de seus endereços de memória. Se passássemos apenas int a e int b, a função criaria cópias locais dos valores, e a troca não afetaria o vetor original.
+			\item int temp = *a;: A variável temp (de "temporário") é usada para guardar o valor original do primeiro elemento. O asterisco (*) é o operador de desreferenciação; ele "desempacota" o ponteiro para acessar o valor que está no endereço de memória. Então, *a é o valor da variável que o ponteiro a está apontando.
+			\item *a = *b;: O valor da segunda variável (*b) é atribuído à primeira (*a)
+			\item *b = temp;: O valor original da primeira variável (*a), que estava guardado em temp, é atribuído à segunda (*b).
+			
+		\end{itemize}
+		
+		\item void bubbleSort(int vetor[], int n)
+		
+		Esta é a função principal que implementa o algoritmo de ordenação.
+		
+		\begin{itemize}
+			\item for (i = 0; i < n - 1; i++): Este é o laço externo. Ele controla o número de "passagens" que o algoritmo fará pelo vetor. Em cada passagem, o maior elemento "flutua" para a sua posição correta no final do vetor. O n - 1 é usado porque, se temos n elementos, precisamos de no máximo n - 1 passagens para ordená-los.
+			\item int houveTroca = 0;: Esta variável de controle é uma otimização do Bubble Sort. Ela é inicializada como 0 (falso) no início de cada passagem. Se o laço interno não realizar nenhuma troca, significa que o vetor já está ordenado, e podemos parar o algoritmo mais cedo.
+			\item for (j = 0; j < n - i - 1; j++): Este é o laço interno. Ele é responsável por percorrer o vetor e comparar os pares de elementos vizinhos.
+			\begin{itemize}
+				\item n - i - 1: A cada passagem do laço externo (i), o maior elemento já está na sua posição correta no final. Portanto, não precisamos mais comparar os elementos que já estão no lugar certo. Por exemplo, na primeira passagem (i=0), o maior elemento vai para a última posição. Na segunda passagem (i=1), o segundo maior elemento vai para a penúltima posição, e assim por diante. Essa otimização evita comparações desnecessárias, melhorando a eficiência do algoritmo.
+			\end{itemize}
+			\item if (vetor[j] > vetor[j + 1]): Esta é a condição principal de comparação. Se o elemento atual (vetor[j]) for maior que o seu vizinho da direita (vetor[j + 1]), eles estão na ordem errada para uma ordenação crescente.
+			\item trocar(\&vetor[j], \&vetor[j + 1]);: Com a condição sendo verdadeira, a função trocar é chamada. Note que usamos o operador \& (operador de endereço) para passar o endereço de memória dos elementos do vetor, pois a função trocar espera ponteiros.
+			\item if (houveTroca == 0) { break; }: Esta é a otimização comentada antes. Se, depois de uma passagem completa do laço interno, a variável houveTroca ainda for 0, significa que o vetor está totalmente ordenado. Nesse caso, usamos o comando break para sair do laço externo, encerrando o algoritmo.
+		\end{itemize}
+		\item int main()
+		
+		Esta é a função principal do programa, onde a execução começa.
+		
+		\begin{itemize}
+			\item int vetor[] = {64, 34, 25, 12, 22, 11, 90};: Declara e inicializa um vetor de inteiros com os valores a serem ordenados.
+			
+			\item int n = sizeof(vetor) / sizeof(vetor[0]);: Esta é uma forma padrão e portátil de calcular o número de elementos em um vetor em C.
+			
+			\begin{itemize}
+				\item sizeof(vetor): Retorna o tamanho total do vetor em bytes.
+				\item sizeof(vetor[0]): Retorna o tamanho de um único elemento do vetor em bytes (neste caso, o tamanho de um int).
+				\item Ao dividir o tamanho total pelo tamanho de um elemento, obtemos o número exato de elementos no vetor, independentemente do tipo de dado ou da arquitetura do sistema. Isso é muito mais robusto do que simplesmente contar os elementos manualmente.
+			\end{itemize}
+			\item printf("Vetor original: "); e imprimirVetor(vetor, n);: Exibe o vetor antes da ordenação.
+			\item bubbleSort(vetor, n);: Chama a função para ordenar o vetor.
+			\item printf("Vetor ordenado: "); e imprimirVetor(vetor, n);: Exibe o vetor após a ordenação.
+		\end{itemize}
+	\end{enumerate}
 	\subsection{Selection sort}
 	\subsection{Insertion sort}
 	\subsection{Shell sort}
