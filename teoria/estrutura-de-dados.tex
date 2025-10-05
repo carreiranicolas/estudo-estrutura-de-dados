@@ -526,12 +526,105 @@
 	
 	\chapter{Introdução aos algoritmos}
 	\section{Algoritmos de busca}
-	\subsection{Busca linear}
-	\subsection{Busca binária}
+	Quando temos um conjunto de dados, podemos querer procurar por um elemento. Exemplo: Temos um array de números inteiros, pode ser que queiramos buscar algum valor dentro desse array.
+	
+	Existem varios tipos de busca e a utilização dos tipos dependerá de como são os dados (se eles estão estruturados, ordenados e se existem valores duplicados). Com isso em mente, veremos cada um desses tipos de busca
+	\subsection{Busca linear - Não ordenada}
+	
+	\subsubsection{Como funciona?}
+	
+	Esse é o algoritmo de busca mais simples que existe. O que ele faz é percorrer o array que contém os dados desde sua primeira posição até a última comparando cada valor dele com o valor buscado. Se os valores forem iguais, a busca termina e caso contrário, continua até o fim do array.
+	
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=4cm,keepaspectratio=false]{imagens/blinearfuncionamento.png}
+		
+	\end{center}
+	
+	Apesar de ser intuitivo, o motivo pelo qual ele tem que percorrer o array inteiro é o fato dele não estar ordenado. No nosso exemplo, suponhamos que o array estivesse ordenado, mas que o número 54 que está sendo buscado não existisse. Ao fazer nossa busca, quando chegarmos no número 67, ele iria parar a busca, pois o valor procurado não poderia estar depois de 67 (o array está ordenado).
+	\subsubsection{Complexidade}
+	
+	A complexidade do algoritmo de busca linear não ordenada pode ser analisada conforme os seguintes casos:
+	
+	\begin{itemize}
+		\item Melhor caso: O(1). Acontece quando o elemento buscado é o primeiro do array.
+		\item Pior caso: O(N). Acontece quando o elemento é o último do array ou não existe.
+		\item Caso médio: O(N/2). 
+	\end{itemize}
+	
+	\subsubsection{Implementação}
+	
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=3cm,keepaspectratio=false]{imagens/blinear.png}
+		
+	\end{center}
+	
+	\subsection{Busca linear - Ordenada}
+	\subsubsection{Como funciona?}
+	A busca sequencial ordenada funcionará da mesma forma que a busca sequencial não ordenada. A diferença é que, com o array ordenado, caso o valor do array seja maior que o valor buscado, ele parará a busca.
+	
+	\begin{center}
+	
+	\includegraphics[width=10cm,height=4cm,keepaspectratio=false]{imagens/blinearordenada.png}
+	
+	\end{center}
+	
+	\subsubsection{Complexidade}
+	
+	A complexidade do algoritmo de busca linear ordenada pode ser analisada conforme os seguintes casos:
+	
+	\begin{itemize}
+		\item Pior caso: O(n). Acontece quando o valor é o maior valor do array, ou seja, está na última posição do array
+	\end{itemize}
+	
+	\subsubsection{Implementação}
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=4cm,keepaspectratio=false]{imagens/blinearordenadafuncionamento.png}
+		
+	\end{center}
+	
+	\subsection{Busca Binária}
+	
+	\subsubsection{Como funciona?}
+	
+	Esse algoritmo é uma das formas mais "especializadas" de se realizar uma busca em um array. Para utilizá-lo o array DEVE estar ordenado. O que ele faz é calcular o meio do array e utilizar o valor desse meio para comparar com o valor buscado. Se o valor buscado for menor que o valor do meio, ele descarta a segunda metade do array e fica com apenas a primeira metade com os valores menos. Caso o valor buscado for maior, ele fará o contrário
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=4cm,keepaspectratio=false]{imagens/bbinaria.png}
+		
+	\end{center}
+	
+	A parte em azul na imagem acima representa a parte do array que foi descartada por conta da condição
+	
+	
+	Um detalhe é que ao realizar a comparação entre o valor buscado e o valor do meio do array, ele vai verificar se o valor buscado é igual ao valor do meio do array e, caso for, ele já encerra a busca ali mesmo.
+	
+	\subsubsection{Complexidade}
+	
+	A complexidade do algoritmo de busca linear ordenada pode ser analisada conforme os seguintes casos:
+	
+	\begin{itemize}
+		\item Melhor caso: O(1). O elemento está exatamente no meio do array
+		\item Caso médio: O(log2 N). 
+		\item Pior caso: O(log2 N). O elemento não existe
+	\end{itemize}
+	
+	\subsubsection{Implementação}
+	
+	Abaixo, a sua implementação no código:
+	
+	
 	
 	\section{Algoritmos de ordenação}
 	Após uma base de dados estar construída pode ser necessário ordena-la. A ordenação dos dados PODE ser um passo preliminar para pesquisá-los (para utilizar o algoritmo de busca binária, por exemplo, precisamos que os dados estejam ordenados). Dada essa introdução, veremos alguns algoritmos de ordenação de dados.
+	
 	\subsection{Bubblesort}
+	
 	\subsubsection{Como funciona?}
 	O algoritmo de ordenação bublesort  é o mais simples dos algoritmos de ordenção. O que ele faz é:
 	
@@ -701,6 +794,8 @@ int main() {
 	\subsection{Shell sort}
 	\subsection{Merge sort}
 	\subsection{Quicksort}
+	
+	\chapter{Alocação dinâmica}
 	
 	
 	
