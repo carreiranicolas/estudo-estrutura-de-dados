@@ -519,7 +519,9 @@
 	Acima, o que acontece é que:
 	
 	\begin{itemize}
-		\item int a = 15; -> Você está colocando o valor 15 dentro da variável a.
+		\item int a = 5; -> Declara uma variável do tipo inteiro chamada a e a inicializa com o valor 5. A variável a armazena o valor 5 em um local específico da memória
+		\item int *b = \&a; -> O *b declara uma variável chamada b como um ponteiro para um inteiro (int *). O operador endereço de (\&) é usado para obter o endereço de memória onde a variável a está armazenada. O ponteiro b é, portanto, inicializado para armazenar o endereço de memória de a. O valor de b não é 5, mas sim o endereço onde o 5 está guardado.
+		\item parte do printf -> O primeiro \%d exibe o valor da variável a, que é 5. O segundo \%d exibe o valor armazenado no endereço apontado por b. O operador desreferência ou conteúdo de (*) é usado em frente ao ponteiro b para acessar o valor guardado naquele endereço—ou seja, o valor de a, que também é 5.
 	\end{itemize}
 	
 	\chapter{Falando de funções}
@@ -551,24 +553,98 @@
 	
 	\subsection{Parametros}
 	
-	A declaração de parametros
+	A declaração de parametros é uma lista de variaveis juntamente com seus tipos: tipo1 nome1, tipo2 nome2...
+	
+	\begin{center}
+		
+		\includegraphics[width=12cm,height=4cm,keepaspectratio=false]{imagens/parametros.png}
+		
+	\end{center}
+	
+	É por meio dos parâmetros que uma função recebe informação do programa principal (isto é, de quem a chamou)
+	
+	Um detalhe é que podemos criar funções que não recebem nenhum parametro. Isso pode ser deito de duas formas:
+	
+	\begin{center}
+		
+		\includegraphics[width=6cm,height=3cm,keepaspectratio=false]{imagens/parametros2.png}
+		
+	\end{center}
+	
+	
 	
 	\subsection{Retorno}
 	
+	As funções podem ou não retornar algum valor. Se ela retornar, alguém deverá receber este valor (os valores retornados de funções devem ser armazenados em uma varíavel)
+	
+	O retorno da função é dado pelo comando:
+	
+	\begin{center}
+		\begin{LARGE}
+			return valor ou exepressao;
+		\end{LARGE}
+	\end{center}
+	
+	É importante lembrar que o valor de retorno fornecido tem que ser compatível com o tipo de retorno declarado para a função
 
+	Uma função que retorna nada é definida colocando-se o tipo void como valor retornado
 	
+	\begin{center}
+		
+		\includegraphics[width=6cm,height=3cm,keepaspectratio=false]{imagens/retorno.png}
+		
+	\end{center}
+	
+	Uma função pode ter mais de uma declaração return. Quando um comando return é executado, a função termina imediatamente.
 
+	\subsection{Escopo}
 	
-
+	Assim como em nosso programa principal, as funções também estão sujeitas ao escopo das variaveis. Escopo é o conjunto de regras que determinam o uso e a validade de variaveis nas diversas partes do programa:
 	
-	
-	
+	\begin{itemize}
+		\item Variaveis Locais: São aquelas que só tem validade no bloco onde são declaradas. Exemplo: variaveis declaradas dentro da função
+		\item Variaveis Globais: São declaradas fora de todas as funções do programa. Elas são conhecidas e podem ser alteradas por todas as funções do programa	
+	\end{itemize}
 	
 	
 	\section{Passagem de parâmetros}
+	
+	
 	\subsection{Passagem por valor}
+	Na linguagem C, os parametros de uma função são, por padrão, passados por valor, ou seja, uma cópia do valor do parametro é feita e passada para a função. Mesmo que esse valor mude dentro da função, nada acontece com o valor de fora da função
 	\subsection{Passagem por referência}
+	Quando se quer que o valor da variavel mude dentro da função, usa-se passagem de parâmetros por referência.
+	
+	Nesse tipo de chamada, não se passa para a função o valor da varíavel, mas sim sua referencia (seu endereço de memoria), assim qualquer alteração que a variavel sofra dentro da função será refletida fora da função. Um exemplo disso é a função scanf(), onde sempre que desejamos ler um valor, passamos essa função o endereço de memoria da variavel que queremos armazenar o valor recolhido, ou seja, a variavel que usamos terá seu valor modificado dentro da função scanf(), e seu valor pode ser acessado no programa principal. Veja um outro exemplo:
+	
+	Como podemos ver acima, para passar um parametro por referencia, coloca-se um asterisco na frente do nome do parametro na declaração da função. A partir disso, ao chamar a função, será necessario passar o operador \&, assim como é feito com scanf()
+	
+	\begin{center}
+		
+		\includegraphics[width=13cm,height=3cm,keepaspectratio=false]{imagens/referencia.png}
+		
+	\end{center}
+	
 	\subsection{Arrays como parametro}
+	
+	Para utilizar arrays como parametros de funções alguns cuidados simples são necessários
+	
+	\begin{itemize}
+		\item Arrays são sempre passados por referência para uma função. A passagem de arrays por referencia evita a cópia desnecessária de grandes quantidades de dados para outras áreas de memória durante a chamada da função, o que afetaria o desempenho do programa
+		\item É necessário declarar um segundo parametro (em geral uma variavel inteira) para passar para a função o tamanho do array separadamente 
+		\item Quando passamos um array por parametro , independente do seu tipo, o que é de fato passado é o endereço do primeiro elemento do array
+	\end{itemize}
+	
+	Na passagem de um array como parametro de uma função podemos declarar a função de diferente maneiras, todas equivalentes:
+	
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=3cm,keepaspectratio=false]{imagens/funcarray.png}
+		
+	\end{center}
+	
+	
+	
 	\subsection{Struct como parametro}
 	
 	\section{Recursão}
