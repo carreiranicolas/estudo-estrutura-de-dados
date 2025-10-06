@@ -524,6 +524,55 @@
 	
 	\chapter{Falando de funções}
 	
+	\section{O que é}
+	Funções são blocos de código que podem ser nomeados e chamados dentro de um programa. Elas facilitam a estruturação e reutilização do código, pois:
+	
+	\begin{itemize}
+		\item Estruturação: programas grandes e complexos são construídos bloco a bloco.
+		\item Reutilização: o uso de funções evita a cópia desnecessária de trechos de código que realizam a mesma tarefa, diminuindo assim o tamanho do programa e a ocorrência de erros
+	\end{itemize}
+	
+	\section{Estrutura}
+	A forma geral de uma função é:
+	
+	\begin{center}
+		
+		\includegraphics[width=12cm,height=4cm,keepaspectratio=false]{imagens/func.png}
+		
+	\end{center}
+	
+	As funções devem ser declaradas ANTES de serem utilizadas, ou seja, antes da cláusula main
+	
+	\subsection{Corpo}
+	
+	O corpo é a alma da função e é composto pelos comandos que a função deve executar. Ele processa os parametros (se houver), realiza tarefas e gera saídas (se necessário)
+	
+	Um detalhe é que nós evitamos operações de leitura e escrita dentro de uma função. Essas operações devem ser feitas em quem chamou a função (o main()), por exemplo.
+	
+	\subsection{Parametros}
+	
+	A declaração de parametros
+	
+	\subsection{Retorno}
+	
+
+	
+
+	
+
+	
+	
+	
+	
+	
+	\section{Passagem de parâmetros}
+	\subsection{Passagem por valor}
+	\subsection{Passagem por referência}
+	\subsection{Arrays como parametro}
+	\subsection{Struct como parametro}
+	
+	\section{Recursão}
+	
 	\chapter{Introdução aos algoritmos}
 	\section{Algoritmos de busca}
 	Quando temos um conjunto de dados, podemos querer procurar por um elemento. Exemplo: Temos um array de números inteiros, pode ser que queiramos buscar algum valor dentro desse array.
@@ -621,6 +670,29 @@
 	\begin{center}
 		
 		\includegraphics[width=10cm,height=4cm,keepaspectratio=false]{imagens/bbinariafunc.png}
+		
+	\end{center}
+	
+	\subsection{Busca em array de struct}
+	\subsubsection{Como funciona?}
+	
+	Aqui, estamos lidando com algo mais complexo. Quando queremos buscar algo em um array de struct, nós usaremos uma das chaves da struct para realizar a busca, como usar a matricula para buscar de uma struct para realizar uma busca
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=4cm,keepaspectratio=false]{imagens/bstruct.png}
+		
+	\end{center}
+	
+	\subsubsection{Complexidade}
+	
+	Como estamos falando de uma busca linear, sua complexidade será a mesma
+	
+	\subsubsection{Implementação}
+	
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=3cm,keepaspectratio=false]{imagens/bstructimplement.png}
 		
 	\end{center}
 	
