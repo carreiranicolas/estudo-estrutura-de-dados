@@ -494,7 +494,7 @@
 	
 	\begin{LARGE}
 		\begin{center}
-			<tipo de dado> *nome ponteiro = a;
+			<tipo de dado> *nome ponteiro = \&a;
 		\end{center}
 	\end{LARGE}
 	
@@ -504,6 +504,12 @@
 	\subsection{Detalhe após a declaração}
 	
 	Quando declaramos um ponteiro(exemplo: int *a), algo importante de se dizer é que se utilizarmos *a em qualquer outro trecho do nosso código, nós não vamos estar usando o ponteiro em si, mas sim o valor que está no endereço apontado pelo ponteiro a. Veja um exemplo:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=8cm,keepaspectratio=false]{imagens/pointer.png}
+		
+	\end{center}
 	
 	
 	\subsection{Exemplo de uso}
@@ -943,13 +949,154 @@ int main() {
 			\item printf("Vetor ordenado: "); e imprimirVetor(vetor, n);: Exibe o vetor após a ordenação.
 		\end{itemize}
 	\end{enumerate}
-	\subsection{Selection sort}
 	\subsection{Insertion sort}
-	\subsection{Shell sort}
+	\subsubsection{Como funciona?}
+	Também é um dos mais simples algoritmos de ordenação existentes. Ele possui um método de ordenação semelhante ao que usamos para
+	ordenar as cartas de um baralho. O que ele faz é:
+	
+	\begin{enumerate}
+		\item 
+	\end{enumerate}
+	
+	\subsubsection{Comlexidade}
+	Os casos de complexidade
+	
+	\begin{itemize}
+		\item Melhor caso: O(n). Ocorre quando a lista já está completamente ordenada.
+		\item Caso médio: O(n²).
+		\item Pior caso: O(n²).
+	\end{itemize}
+	\subsection{Selection sort}
+	\subsubsection{Como funciona?}
+	A idéia da ordenação por seleção é
+	procurar o menor elemento do
+	vetor (ou maior) e movimentá-lo
+	para a primeira (última) posição do
+	vetor. Repetir para os n elementos do
+	vetor.
+	\subsubsection{Complexidade}
+	Sua complexidade:
+	
+	\begin{itemize}
+		\item Melhor caso: O(n²)
+		\item Caso médio: O(n²)
+		\item Pior caso: O(n²)
+	\end{itemize}
+	
 	\subsection{Merge sort}
+	\subsubsection{Como funciona?}
+	
+	Também conhecido como ordenação por intercalação. É um Algoritmo recursivo que usa a idéia de dividir para conquistar para
+	ordenar os dados (Parte do princípio de que é mais fácil ordenar um conjunto com poucos dados do que um com muitos). O algoritmo divide os dados em conjuntos cada vez menores para depois ordená-los e combina-los por meio de intercalação (merge)
+	
+	\begin{itemize}
+		\item Divide, recursivamente, o conjunto de dados até que cada subconjunto possua 1 elemento
+		\item Combina 2 subconjuntos de forma a obter 1 conjunto maior e ordenado
+		\item Esse processo se repete até que exista apenas 1 conjunto
+	\end{itemize}
+	\subsubsection{Complexidade}
+	\begin{itemize}
+		\item Melhor caso: O(nlogn)
+		\item Caso médio: O(nlogn)
+		\item Pior caso: O(n log n)
+	\end{itemize} 
+	\subsection{Shell sort}
+	\subsubsection{Como funciona?}
+	\subsubsection{Complexidade}
+
 	\subsection{Quicksort}
+	\subsubsection{Como funciona?}
+	
+	É o algoritmo de ordenação interna mais rápido que se conhece para uma ampla variedade de situações. Provavelmente é o mais utilizado. Ideia básica: Dividir e Conquistar. Um elemento é escolhido como pivô. “Particionar”: os dados são rearranjados (valores menores do que o pivô são colocados antes dele e os maiores, depois). Recursivamente ordena as 2 partições
+	\subsubsection{Complexidade}
+	
+	\begin{itemize}
+		\item Melhor caso: O(nlogn)
+		\item Caso médio: O(nlogn)
+		\item Pior caso: O(n²)
+	\end{itemize} 
 	
 	\chapter{Alocação dinâmica}
+	
+	\section{Conceito}
+	
+	Sempre que escrevemos um programa, é preciso reservar espaço para as informações que serão processadas. Para isso, utilizamos as variaveis.
+	
+	Infelizmente, nem sempre é possível saber, em tempo de execução, o quanto de memória um
+	programa irá precisar. 
+	
+	Com isso, a alocação dinâmica permite ao programador alocar memória em tempo de execução, ou seja, a quantidade de memória é alocada sob demanda, quando o programa
+	precisa, e não apenas quando se
+	está escrevendo o programa.
+	
+	Veja um exemplo abaixo:
+	
+	\begin{center}
+		
+		\includegraphics[width=12cm,height=8cm,keepaspectratio=false]{imagens/dynamicaloc.png}
+		
+	\end{center}
+	
+	O que acontece acima é que nós temos um pointeiro p que não aponta para nada, aí, usando a alocação dinâmica em tempo de execução no nosso programa, nós alocamos 5 espaços de memória para p
+	
+	
+	\section{Tipos de alocação dinamica}
+	
+	\subsection{malloc}
+	
+	\subsubsection{Como funciona?}
+	
+	A função malloc() serve para alocar memória e tem o seguinte protótipo:
+	
+	\begin{center}
+		\begin{LARGE}
+			void *malloc (unsigned int num);
+		\end{LARGE}
+	\end{center}
+	
+	Assim, dado o número de bytes que queremos alocar (num), ela aloca na memória e retorna um ponteiro void* para o primeiro byte alocado.
+	
+	\subsubsection{Exemplo}
+	
+	Vamos ter um exemplo onde queremos alocar 1000 bytes de memória livre:
+	
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=4cm,keepaspectratio=false]{imagens/dynamicaloc2.png}
+		
+	\end{center}
+	
+	
+	Agora um exemplo vamos alocar espaço de memória para 50 inteiros:
+	
+	
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=4cm,keepaspectratio=false]{imagens/dynamicaloc3.png}
+		
+	\end{center}
+	
+	Uma observação importante é que a função sizeof() cálcula o tamanho do objeto que você passa para ele em bytes, então acima nós calculos o tamanho de um inteiro em bytes e multiplicamos por 50
+	
+	\subsection{calloc}
+	
+	A função calloc() também serve para alocar memória, mas possui um protótipo um pouco
+	diferente:
+	
+	\begin{center}
+		\begin{LARGE}
+			void *calloc (unsigned int num, unsigned int size)
+		\end{LARGE}
+	\end{center}
+	
+	Basicamente, a função calloc() faz o mesmo que a função malloc(). A diferença é que agora
+	passamos a quantidade de posições a serem alocadas e o tamanho do tipo de dado alocado
+	como parâmetros distintos da função.
+
+	
+	\subsection{realloc}
+	
+	\subsection{free}
 	
 	
 	
