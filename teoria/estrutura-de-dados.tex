@@ -1076,9 +1076,11 @@ int main() {
 		
 	\end{center}
 	
-	Uma observação importante é que a função sizeof() cálcula o tamanho do objeto que você passa para ele em bytes, então acima nós calculos o tamanho de um inteiro em bytes e multiplicamos por 50
+	Uma observação importante é que a função sizeof() cálcula o tamanho do objeto que você passa para ele em bytes, então acima nós calculos o tamanho de um inteiro em bytes e multiplicamos por 50. Além disso, outro detalhe é que se não houver memória suficiente para alocar a memória requisitada,  a função malloc() retorna um ponteiro nulo
 	
 	\subsection{calloc}
+	
+	\subsubsection{Como funciona?}
 	
 	A função calloc() também serve para alocar memória, mas possui um protótipo um pouco
 	diferente:
@@ -1092,11 +1094,52 @@ int main() {
 	Basicamente, a função calloc() faz o mesmo que a função malloc(). A diferença é que agora
 	passamos a quantidade de posições a serem alocadas e o tamanho do tipo de dado alocado
 	como parâmetros distintos da função.
+	
+	\subsubsection{Exemplo}
+	
+	Vamos ver um exemplo no código a seguir:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=3cm,keepaspectratio=false]{imagens/calloc.png}
+		
+	\end{center}
+	
+	Perceba acima que diferentemente do malloc, você passa os parametros de forma distinta (isso pode ser visto separando eles por virgula). Além disso, note o que falamos anteriormente que se não houver memória suficiente para alocar, será retornado um ponteiro nulo
+	
+	
 
 	
 	\subsection{realloc}
+	\subsubsection{Como funciona?}
+	A função realloc() serve para REALOCAR memória e tem o seguinte protótipo:
+	
+	\begin{center}
+		\begin{LARGE}
+			void *realloc (void *ptr, unsigned int num);
+		\end{LARGE}
+	\end{center}
+	
+	A função realloc irá modificar o tamanho da memória previamente alocada e apontada por *ptr para o valor indicado por num (sendo que num pode ser maior ou menor do que a quantidade de memória alocada)
+	
+	Alguns detalhes é que: Se num for 0, a memória apontada por *ptr é liberada (assim como a função free que veremos em breve). Além disso, se *ptr for nulo, o numero de bytes será alocado e devolverá um ponteiro (assim como o malloc faz)
+	
+	\subsubsection{Exemplo}
+	
+	Vamos ver um exemplo abaixo com o contexto de um malloc no começo do programa de 5 * sizeof(int)
+	
+	\begin{center}
+		
+		\includegraphics[width=9cm,height=5cm,keepaspectratio=false]{imagens/realloc.png}
+		
+	\end{center}
+	
+
 	
 	\subsection{free}
+	\subsubsection{Como funciona?}
+	
+	\subsubsection{Exemplo}
 	
 	
 	
