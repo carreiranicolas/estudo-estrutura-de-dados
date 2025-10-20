@@ -1037,7 +1037,7 @@ int main() {
 		
 	\end{center}
 	
-	O que acontece acima é que nós temos um pointeiro p que não aponta para nada, aí, usando a alocação dinâmica em tempo de execução no nosso programa, nós alocamos 5 espaços de memória para p
+	O que acontece acima é que nós temos um pointeiro p que não aponta para nada, aí, usando a alocação dinâmica em tempo de execução no nosso programa, nós alocamos 5 espaços de memória para p. Na prática, é como se estivessemos criando um array (na verdade é extamente isso)
 	
 	
 	\section{Tipos de alocação dinamica}
@@ -1161,8 +1161,136 @@ int main() {
 	\section{Casos especiais da alocação dinamica}
 	\subsection{Arrays}
 	
+	\subsubsection{Como funciona?}
+	
+	Quando temos arrays com mais de uma dimensão, utilizamos o conceito de ponteiro para ponteiro. Veja como esse conceito funciona visualmente:
+	
+	\begin{center}
+		
+		\includegraphics[width=12cm,height=5cm,keepaspectratio=false]{imagens/pointpoint.png}
+		
+	\end{center}
+	
+	
+	Acima, nós vamos ter a variavel que contém o caractere 'a' e ai vamos ter o ponteiro p1 que aponta para o endereço de memoria dessa variavel, o ponteiro p2 que aponta para o endereco de memoria de p1 e p3 que aponta para o endereço de memória de p2. Se mudamos o endereço de memória que p1 aponta, todo o resto muda.
+	
+	Entendido isso, veja como funcionará quando queremos alocar memória para um array de mais de uma dimensão (especificamente 2 dimensões):
+	
+	
+	\begin{center}
+		
+		\includegraphics[width=12cm,height=5cm,keepaspectratio=false]{imagens/alocarray.png}
+		
+	\end{center}
+	
+	No exemplo acima, o que aconteceu foi:
+	
+	\begin{enumerate}
+		\item int **p;
+		\begin{itemize}
+			\item Isso declara p como um "ponteiro para um ponteiro de inteiro".
+		\end{itemize}
+		\item int i, j, N = 2;
+		\begin{itemize}
+			\item Aqui, declaramos tres variaveis do tipo inteiro. i e j serão utilizadas como contadores nos loops (para percorrer linhas e colunas). A variavel N é definida com o valor 2, o que significa que  
+		\end{itemize}
+		\item p = (int**) malloc(N*sizeof(int*));
+		\begin{itemize}
+			\item Esta é a primeira alocação de memória. Utilizando o malloc você está alocando espaço para N ponteiros de inteiro. Assim, p (sendo um ponteiro para ponteiros de inteiro) irá apontar para o bloco de memória p[0] (que é um ponteiro para inteiro) e seguinte ao bloco p[0], temos p[1]. No momento, os ponteiros para inteiros que temos em p[0] e p[1] estão vazios (tecnicamente, apontam para lixo)
+
+		\end{itemize}
+		
+		\item for (i = 0; i < N; i++) { ... }
+		\begin{itemize}
+			\item Este é o loop externo. Ele vai ser executado N (2) vezes: uma para i = 0 (primeira linha) e outra para i = 1 (segunda linha).
+		\end{itemize}
+		
+		\item p[i] = (int *)malloc(N*sizeof(int));
+		\begin{itemize}
+			\item Essa é a segunda alocação de memória. Ela acontece dentro do loop. Nós iremos alocar um espaço na memória para N inteiros.
+			\item Quando i = 0, por exemplo, para o ponteiro para inteiros que fica em p[0], ele irá apontar para o endereço de memória onde teremos o nosso primeiro valor e inteiro
+		\end{itemize}
+		\item for (j = 0; j < N; j++) { ... }
+		\begin{itemize}
+			\item Este é o loop interno. Ele está aninhado (dentro) do primeiro loop.
+			\item Quando i = 0, após p[i] = (int *)malloc(N*sizeof(int)); ter sido executado, p[0] terá um ponteiro que aponta para um endereço de memória que armazena um inteiro e seguido desse endereço, tem um outro endereço de memória que armazena outro inteiro (eles ficam um seguido do outro). Aí que entra o j do loop. Para armazena os inteiros nesse endereço de memória, utilizaremos o j para percorre-los 
+			
+		\end{itemize}
+		\item scanf("\%d", \&p[i][j]);
+		\begin{itemize}
+			\item scanf é a função que lê dados do teclado
+			\item "\%d" diz a ela que esperamos um número inteiro.
+			\item \&p[i][j] é onde a mágica acontece:
+			\begin{itemize}
+				\item Em p[i], estamos acessando o o lugar onde temos o ponteiro para o inteiro, então em p[i][j] estamos acessando o local para onde aquele ponteiro para inteiros aponta. Esse local é o que armazenará o valor do inteiro
+				\item O \& (operador "endereço de") passa o endereço exato daquela posição na memória para o scanf, para que ele saiba onde salvar o número que o usuário digitar.
+			\end{itemize}
+		\end{itemize}
+	\end{enumerate}
+	
+	Veja ainda o processo explicado acima de forma mais visual:
+	
+		
+	\begin{center}
+		
+		\includegraphics[width=12cm,height=5cm,keepaspectratio=false]{imagens/pointpoint2.png}
+		
+	\end{center}
+	
+	\subsubsection{Desalocação}
+	
+	Agora que já vimos sobre a alocação de memória em arrays de mais de uma dimensão, precisamos ver sobre liberação (desalocamento). Na liberação, ocorre de maneira inversa do alocamento. Nós vamos desalocar a memória primeiro dos ponteiros para inteiros e depois do ponteiro para ponteiros de inteiros. Veja:
+	
+	\begin{center}
+		
+		\includegraphics[width=12cm,height=5cm,keepaspectratio=false]{imagens/freepointpoint.png}
+		
+	\end{center}
+	
+	
+	
 	\subsection{Structs}
 	
-
+	Assim como nos tipos básicos, também é possível realizar a alocação dinamica de structs.
+	
+	\subsubsection{Como funciona}
+	
+	Podemos realizar a alocação de uma única struct ou de mais de uma:
+	
+	\begin{itemize}
+		\item Uma única struct
+		\begin{itemize}
+			\item Um ponteiro para struct receberá o malloc
+			\item Utilizamos o operador seta para acessar o conteúdo
+			\item Usamos o free para liberar a memória alocada
+		\end{itemize}
+	\end{itemize}
+	
+	
+	\begin{center}
+	
+		\includegraphics[width=10cm,height=5cm,keepaspectratio=false]{imagens/alocstruct1.png}
+	
+	\end{center}
+	
+	\begin{itemize}
+		\item Mais de uma struct
+		\begin{itemize}
+			\item Um ponteiro para a struct receberá o malloc
+			\item Utilizamos os colchetes para acessar o conteúdo
+			\item Usamos o free para liberar a memória alocada	
+		\end{itemize} 
+	\end{itemize}
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=5cm,keepaspectratio=false]{imagens/alocstruct1.png}
+		
+	\end{center}
+	
+	\chapter{Listas encadeadas}
+	
+	\chapter{Pilha e Fila}
+	
 \end{document}
 
