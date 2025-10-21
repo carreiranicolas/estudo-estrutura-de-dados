@@ -1288,11 +1288,13 @@ int main() {
 		
 	\end{center}
 	
-	\chapter{Listas encadeadas}
+	\chapter{Lista encadeada, Pilha e Fila}
+	
+	\section{Listas encadeadas}
 	
 	A lista encadeada lembra bastante os arrays, mas diferente deles onde seus elementos são guardados em posições contíguas de memória, uma a lista encadeada é formada por uma sequência de nós (ou nodes) que estão espalhados pela memória. A vantagem é justamente em operações de inserção ou remoção não precisar movimentar os elementos na memória (uma vez que não estamos falando de posições contíguas)
 	
-	\section{Como funciona?}
+	\subsection{Como funciona?}
 	
 	Cada nó em uma lista encadeada é composto por duas partes principais:
 	
@@ -1309,7 +1311,7 @@ int main() {
 		
 	\end{center}
 	
-	\section{Implementação}
+	\subsection{Implementação}
 	
 	\begin{center}
 		
@@ -1454,14 +1456,12 @@ typedef struct cel{
 	\end{itemize}
 	
 	
-	
-	\chapter{Pilha e Fila}
+	\section{Pilha}
 	
 	Pilhas e Filas são como listas, porém elas tem regras estritas sobre como os elementos podem ser adicionados e removidos.
 	
-	\section{Pilha}
 	
-	\subsubsection{Como funciona}
+	\subsection{Como funciona}
 	
 	As pilhas são estruturas do tipo LIFO (last-in first-out). Isso significa que o último elemento inserido é o primeiro a sair. Além disso, nós só teremos acesso ao último elemento. Para processar o penúltimo elemento, devemos remover o último
 	
@@ -1474,7 +1474,7 @@ typedef struct cel{
 	\end{center}
 	
 	
-	\subsubsection{Curiosidade}
+	\subsection{Curiosidade}
 	
 	Uma curiosidade é que tem alguns exemplos interessantes onde a pilha é utilizada, são eles:
 	
@@ -1486,11 +1486,118 @@ typedef struct cel{
 	
 	
 	
-	\subsubsection{Implementação}
+	\subsection{Implementação}
+	
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+#include <stdio.h>
+#include <stdlib.h>
+
+struct elemento{
+	int conteudo;
+	struct elemento *prox;
+};
+
+typedef struct elemento Elem;
+typedef struct elemento* Pilha;
+
+Pilha* cria_pilha(){
+	Pilha* pi = (Pilha*) malloc(sizeof(Pilha));
+	if(pi!=NULL){
+		*pi=NULL;
+	}
+	return pi;
+}
+
+void libera_pilha(Pilha* pi){
+	if(pi!=NULL){
+		Elem* no;
+		while((*pi)!=NULL){
+			no = *pi;
+			*pi=(*pi)->prox;
+			free(no);
+		}
+		free(pi);
+	}
+}
+
+int consulta_topo(Pilha* pi){
+	if(pi==NULL){
+		return 0;
+	}
+	if((*pi)==NULL){
+		return 0;
+	}
+	return (*pi)->conteudo;
+}
+
+int insere_Pilha(Pilha* pi,int x ){
+	if(pi==NULL){
+		return 0;
+	}
+	Elem* no;
+	no = (Elem*)malloc(sizeof(Elem));
+	if(no==NULL){
+		return 0;
+	}
+	no->conteudo = x;
+	no->prox = (*pi);
+	*pi=no;
+	return 1;
+}
+
+int remove_Pilha(Pilha* pi){
+	if(pi==NULL){
+		return 0;
+	}
+	if((*pi)==NULL){
+		return 0;
+	}
+	Elem *no = *pi;
+	*pi = no->prox;
+	free(no);
+	
+	return 1;
+}
+
+void imprime_Pilha(Pilha* pi){
+	if(pi==NULL){
+		return;
+	}
+	Elem* no =*pi;
+	printf("\n----------Pilha----------");
+	while(no!=NULL){
+		printf("\nConteudo: %d\n", no->conteudo);
+		no = no->prox;
+	}
+	printf("\n----------------------");
+	
+}
+
+int main(void) {
+	
+	Pilha* pi = cria_pilha();
+	
+	insere_Pilha(pi, 0);
+	insere_Pilha(pi, 1);
+	insere_Pilha(pi, 2);
+	insere_Pilha(pi, 3);
+	insere_Pilha(pi, 4);
+	imprime_Pilha(pi);
+	
+	remove_Pilha(pi);
+	remove_Pilha(pi);
+	
+	imprime_Pilha(pi);
+	return 0;
+}
+		\end{lstlisting}
+	\end{center}
 	
 	\section{Fila}
 	
-	\subsubsection{Como funciona}
+	\subsection{Como funciona}
 	
 	As pilhas são estruturas do tipo FIFO (first-in first-out). Isso significa que o primeiro elemento inserido é o primeiro a sair. Além disso, nós só teremos acesso ao último elemento. Para processar o penúltimo elemento, devemos remover o último
 	
@@ -1500,6 +1607,140 @@ typedef struct cel{
 		
 		\includegraphics[width=10cm,height=5cm,keepaspectratio=false]{imagens/fila.png}
 		
+	\end{center}
+	
+	
+	\subsection{Curiosidade}
+	
+	Uma curiosidade é que tem alguns exemplos interessantes onde a fila é utilizada, são eles:
+	
+	\begin{itemize}
+		\item Filas de Impressão: Quando você manda vários documentos para imprimir, eles entram numa fila. A impressora processa o primeiro documento que chegou (FIFO).
+		\item Processamento de Tarefas: Em sistemas que recebem muitas solicitações (como um servidor web), as solicitações são colocadas numa fila para serem processadas por ordem de chegada.
+		\item Mensagens (Chat): As mensagens que você recebe num chat geralmente são exibidas na ordem em que chegaram.
+	\end{itemize}
+	
+	
+	
+	\subsection{Implementação}
+	
+		
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+#include <stdio.h>
+#include <stdlib.h>
+
+struct elemento{
+	int conteudo;
+	struct elemento *prox;
+};
+typedef struct elemento Elem;
+
+struct fila{
+	struct elemento *inicio;
+	struct elemento *final;
+	int qtd;
+};
+typedef struct fila Fila;
+
+Fila* cria_fila(){
+	Fila* fi = (Fila*) malloc(sizeof(Fila));
+	if(fi!=NULL){
+		fi->final = NULL;
+		fi->inicio = NULL;
+		fi->qtd = 0;
+	}
+	return fi;
+}
+
+void libera_fila(Fila* fi){
+	if(fi!=NULL){
+		Elem* no;
+		while(fi->inicio!=NULL){
+			no = fi->inicio;
+			fi->inicio=fi->inicio->prox;
+			free(no);
+		}
+		free(fi);
+	}
+}
+
+int insere_Fila(Fila* fi,int x ){
+	if(fi==NULL){
+		return 0;
+	}
+	Elem* no = (Elem*)malloc(sizeof(Elem));
+	if(no==NULL){
+		return 0;
+	}
+	no->conteudo = x;
+	no->prox = NULL;
+	
+	if(fi->inicio ==NULL){
+		fi->inicio = no;
+	}else{
+		fi->final->prox = no;
+	}
+	fi->final= no;
+	fi->qtd++;
+	return 1;
+}
+
+int remove_Fila(Fila* fi){
+	if(fi==NULL){
+		return 0;
+	}
+	if(fi->inicio==NULL){
+		return 0;
+	}
+	Elem *no = fi->inicio;
+	fi->inicio = fi->inicio->prox;
+	
+	if(fi->inicio==NULL){
+		fi->final=NULL;
+	}
+	
+	free(no);
+	fi->qtd--;
+	
+	return 1;
+}
+
+
+void imprime_Fila(Fila* fi){
+	if(fi==NULL){
+		return;
+	}
+	Elem* no =fi->inicio;
+	printf("\n----------Fila----------\n");
+	while(no!=NULL){
+		printf("\t  %d ", no->conteudo);
+		no = no->prox;
+	}
+	printf("\n----------------------");
+}
+int main(void) {
+	
+	Fila* fi = cria_fila();
+	
+	insere_Fila(fi, 0);
+	insere_Fila(fi, 1);
+	insere_Fila(fi, 2);
+	insere_Fila(fi, 3);
+	insere_Fila(fi, 4);
+	
+	imprime_Fila(fi);
+	
+	remove_Fila(fi);
+	remove_Fila(fi);
+	remove_Fila(fi);
+	imprime_Fila(fi);
+	
+	return 0;
+}
+			
+		\end{lstlisting}
 	\end{center}
 	
 \end{document}
