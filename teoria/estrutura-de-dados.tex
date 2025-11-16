@@ -1743,5 +1743,124 @@ int main(void) {
 		\end{lstlisting}
 	\end{center}
 	
+	\chapter{Arvores}
+	\section{Conceituando}
+	A arvore na programação é uma estrutura de dados não linear e hierárquica que é usada para representar e organizar dados. Elas são definidas com um conjunto de nós e arestas (que fazem a conexão entre dois nós). 
+	
+	\begin{center}
+		
+		\includegraphics[width=5cm,height=8cm,keepaspectratio=false]{imagens/arvore.png}
+		
+	\end{center}
+	
+	Existem diferentes tipos de arvores na computação, desenvolvidas para diferentes tipos de aplicação, são elas:
+	
+	\begin{itemize}
+		\item Arvores binária de busca
+		\item Árvore AVL
+		\item Árvore Rubro-Negra
+		\item Árvore B+
+		\item Árvore 2-3
+		\item Árvore 2-3-4
+		\item Quadtree
+		\item Octree
+	\end{itemize}
+	
+	\subsection{Detalhando a estrutura}
+	
+	Detalhando um pouco a estrutura das árvores, nós temos alguns conceitos essenciais. Veja a imagem abaixo:
+	
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_estrutura.png}
+		
+	\end{center}
+	
+	\begin{itemize}
+		\item Nó raiz: é o nó mais alto
+		\item Nós internos (galhos): São os nós com filho
+		\item Nós folha (ou externos): São os nós sem filho
+	\end{itemize}
+	
+	Além disso, há um detalhe de hierarquia, chamamos de:
+	
+	\begin{itemize}
+	
+		\item Nó pai: Antecessor imediato do nó especifico que estamos olhando
+		\item Nó filho: Sucessor imediato do nó especifico que estamos olhando
+	\end{itemize}
+	
+	\subsection{Curiosidade}
+	
+	Uma curiosidade é que as árvores estão mais perto de nós do que se imagina. Alguns exemplos da aplicação de árvores no mundo real são:
+	
+	\begin{itemize}
+		\item Estrutura de diretórios e arquivos de um sistema operacional
+		\item Estrutura usada por diversos algoritmos
+	\end{itemize}
+	
+	\section{Arvores binárias}
+	
+	\subsection{Conceito}
+	Uma árvore binária é uma árvore em que cada nó tem 0, um ou dois filhos. 
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria.png}
+		
+	\end{center}
+	
+	Tendo dois filhos, teremos a subarvore da esquerda e a subarvore da direita. Veja a imagem a seguir:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_subarvores.png}
+		
+	\end{center}
+	
+	Uma árvore pode ser completa se todo elemento que não for folha tem associado exatamente duas subarvores. Ou seja, ou este elemento tem duas subarvores ou não tem nenhuma. Veja uma imagem abaixo:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_completa.png}
+		
+	\end{center}
+	
+	Agora, uma árvore binária sera cheia se for completa e todas suas folhas estiverem no mesmo nível. Veja a imagem a seguir:
+	
+	
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=5cm,keepaspectratio=false]{imagens/arvore_binaria_cheia.png}
+		
+	\end{center}
+	
+	\subsection{Propriedades}
+	
+	Algumas propriedades das árvores binárias:
+	
+	\begin{itemize}
+		\item Nem sempre existe um caminho entre dois elementos de uma árvore, mas se existe, este caminho é único
+		\item Um caminho entre dois elementos e1 e e2 é uma sequencia
+		\item A altura de um nó folha é 0. Pode se considerar que a altura de uma árvore vazia é -1, para facilitar na implementação
+		\item O peso de uma árvore é o número de elementos desta árvore. Recursivamente se pode definir como a soma dos pesos das subarvores mais 1
+		\item De acordo com a definição
+	\end{itemize}
+	
+	Podemos calcular o número de nós de uma árvore cheia a partir de sua altura. Para isso
+	
+	
+	\section{Arvoes AVL}
+	
+	\chapter{Hash}
+	\section{Conceito}
+	A Tabela Hash (ou Mapa Hash) é uma estrutura de dados fundamental na programação, projetada para armazenar dados de forma que a busca, inserção e remoção sejam extremamente rápidas (em tempo médio de O(1)).
+	
+	Ela veio para tentar solucionar o problema onde queriamos, em arrays, por exemplo, procurar uma informação a partir de indice/chave. Esse processo que era feito antes não era nada eficiente, uma vez que precisávamos realizar a comparação entre chaves e esse processo era ainda mais ineficiente se o array estivesse desordenado. 
+	
+	\section{Funcionamento}
+	
+	
 \end{document}
 
