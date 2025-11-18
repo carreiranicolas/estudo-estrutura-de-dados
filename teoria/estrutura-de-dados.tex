@@ -1841,6 +1841,9 @@ int main(void) {
 	Algumas propriedades das árvores binárias:
 	
 	\begin{itemize}
+		\item A altura (h) de uma árvore binária é a longitude do maior caminho. Ou o números de vezes que se aplica a relação pai/filho no maior caminho( igual ao número de ramos/galhos). 
+		\item O nível de um elemento dentro da árvore binária se define como a longitude do caminho que parte da raiz e chega até esse elemento. Desta forma, o nível da raiz é 0, e o nível de qualquer
+		elemento é o nível de seu pai mais 1.
 		\item Nem sempre existe um caminho entre dois elementos de uma árvore, mas se existe, este caminho é único
 		\item Um caminho entre dois elementos e1 e e2 é uma sequencia
 		\item A altura de um nó folha é 0. Pode se considerar que a altura de uma árvore vazia é -1, para facilitar na implementação
@@ -1848,19 +1851,237 @@ int main(void) {
 		\item De acordo com a definição
 	\end{itemize}
 	
-	Podemos calcular o número de nós de uma árvore cheia a partir de sua altura. Para isso
+	Dessa forma, podemos calcular o número de nós de uma árvore cheia a partir de sua altura. Para isso, basta usar a fórmula:
+	
+	\begin{center}
+		\begin{LARGE}
+			N = 2$^(h+1)$ - 1
+		\end{LARGE}
+	\end{center}
+	
+	Veja o exemplo a seguir:
+	
+	
+	Por outro lado, se a árvore estiver degenerada (os nós internos tem somente uma subarvore), usaremos a fórmula:
+	
+		
+	\begin{center}
+		\begin{LARGE}
+			N = h + 1
+		\end{LARGE}
+	\end{center}
+	
+	Um detalhe que é importante ressaltar é que o esforço computacional necessário para alcançar qualquer nó da arvore será
+	
+	
+	Uma curiosidade é que tem algumas nomenclaturas que podemos dar para as árvores a depender do seu grau de semelhança com outras arvores:
+	
+	\begin{itemize}
+		\item Arvores iguais: Duas árvores binarias são iguais se ambas são vazias, ou se suas raízes são iguais, e o mesmo acontece para suas respectivas subarvores
+		esquerda e direita.
+		\item Arvores isomorfas: Duas árvores são isomorfas se têm a mesma forma(estrutura), mas não necessariamente os mesmos elementos
+		\item Arvores semelhantes: Duas árvores são semelhantes se têm os mesmos elementos, ainda que não sejam isomorfas.
+	\end{itemize}
+	
+	\subsubsection{Percurso}
+	
+	Sobre o percurso em uma árvore binária, cada nó é visitado uma vez, não existe uma ordem natural para se percorrer os nós de uma árvore binária e percorrer os nós de uma árvore binária pode ser feito para executar uma ação em cada nó. 
+	
+	Podemos percorre-la de 3 formas diferentes:
+	
+	\begin{itemize}
+		\item Percurso pré-ordem: Visita a raiz, o filho da esquerda e o filho da direita
+		\item Percurso um-ordem: Visita o filho da esquerda, a raiz e o filho da direita
+		\item Percurso pós-ordem: Visita o filho da esquerda, o filho da direita e a raiz
+	\end{itemize}
+	
+	Existem outras formas de percursos. Acima, temos os percursos mais importantes. Veja uma imagem abaixo do percurso PRÉ-ORDEM:
+	
+		
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_PO.png}
+		
+	\end{center}
+	
+	
+	
+	Agora veja uma imagem do percurso UM-ORDEM:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_UO.png}
+		
+	\end{center}
+	
+	
+	Agora veja, por último, a do percurso PÓS-ORDEM:
+	
+		
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_POO.png}
+		
+	\end{center}
+	
+	
+	
+	\section{Arvore binaria de busca}
+	
+	Uma arvore binaria de busca é uma árvore binária com uma regra fundamental. 
+	
+	\begin{itemize}
+		
+		\item tudo na subarvore à esquerda é menor que ele
+		\item tudo na subarvore à direita é maior que ele
+	\end{itemize}
+	
+	Veja um exemplo abaixo:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_busca.png}
+		
+	\end{center}
+	
+	\subsection{Operações básicas}
+	
+	\subsubsection{Inserção}
+	
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_busca_insercao.png}
+		
+	\end{center}
+	
+	\subsubsection{Remoção}
+	
+	Remover um nó de uma árvore binária de busca não é uma tarefa tão simples quanto a inserção. Isso ocorre porque precisamos procurar o nó a ser removido da
+	árvore o qual pode ser um nó folha ou um nó interno e se for um nó interno, precisamos reorganizar a árvore para que ela continue sendo uma árvore binária de busca
+	
+	Veja um exemplo de remoção de um NÓ FOLHA:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_busca_remocao1.png}
+		
+	\end{center}
+	
+	Agora veja um exemplo de remoção de um nó com 1 filho:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_busca_remocao2.png}
+		
+	\end{center}
+	
+	Por fim, veja um exemplo de remoção de um nó com 2 filhos
+	
+		
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvore_binaria_busca_remocao3.png}
+		
+	\end{center}
 	
 	
 	\section{Arvoes AVL}
 	
-	\chapter{Hash}
+	Infelizmente, os algoritmos de inserção e remoção em árvores binárias não garantem que a árvore gerada a cada passo esteja balanceada. Dependendo da ordem em que os dados são inseridos na árvore,
+	podemos criar uma árvore na forma de uma escada. Veja a imagem abaixo:
+	
+	A solução para isso foi modificar as operações de inserção e remoção de modo a balancear a árvore a cada inserção e remoção, garantindo assim que a diferença de alturas das sub-árvores esquerda e direita de cada nó seja de no máximo uma unidade
+	
+	Assim, surgiram as árvores balanceadas, sendo elas:
+	
+	\begin{itemize}
+		\item AVL
+		\item 2-3-4
+		\item Rubro-Negra
+	\end{itemize}
+	
+	Por aqui, vamos tratar da AVL.
+	
+	\subsection{Conceito}
+	
+	A arvore AVL permite o rebalanceamento local da árvore. Apenas a parte afetada pela inserção ou remoção é rebalanceada. Em sua etapa de rebalanceamento, ela usa rotações simples ou duplas, que são executadas a cada inserção ou remoção e buscam manter a árvore binária como uma árvore quase completa
+	
+	\subsection{Funcionamento}
+	
+	Assim, nós teremos as rotações que buscarão corrigir o fator de balanceamento (ou fb), que é a diferença entre a altura da subarvore à esquerda - a altura da subarvore à direita
+	
+	\chapter{Tabela Hash}
 	\section{Conceito}
 	A Tabela Hash (ou Mapa Hash) é uma estrutura de dados fundamental na programação, projetada para armazenar dados de forma que a busca, inserção e remoção sejam extremamente rápidas (em tempo médio de O(1)).
 	
-	Ela veio para tentar solucionar o problema onde queriamos, em arrays, por exemplo, procurar uma informação a partir de indice/chave. Esse processo que era feito antes não era nada eficiente, uma vez que precisávamos realizar a comparação entre chaves e esse processo era ainda mais ineficiente se o array estivesse desordenado. 
+	Ela veio para tentar solucionar o problema onde suponhamos que nós estamos guardando dados em um array ou uma lista e queiramos buscar um item, o grande problema/limitação é:
+	
+	\begin{itemize}
+		\item Precisamos olhar item por item. Isso pode ser muito lento e esse é um processo O(n)
+	\end{itemize}
+	
+	Outro detalhe é que as árvores binárias de busca até resolvem esse problema, mas de forma parcial, uma vez que:
+	
+	\begin{itemize}
+		\item Podem ficar desequilibradas
+		\item Podem perder eficiência
+		\item Mesmo no melhor caso, fazem buscas em O(log n)
+	\end{itemize}
+	
+	Dessa forma, faltava uma estrutura que permitia
+	
+	\begin{itemize}
+		\item buscar muito rápido, sem percorrer tudo
+		\item em tempo constante, O(1)
+		\item sem depender de ordenação
+		\item sem depender de estrutura balanceada
+	\end{itemize}
+	
+	E foi assim que surgiu a tabela hash, uma estrutura extremamente eficiente para buscas, inserçoes e remoções
 	
 	\section{Funcionamento}
 	
+	A ideia central é transformar uma chave (ex: nome, número, CPF, texto) em um índice de array. Suponha que você tenha um array interno com vários espaços. Exemplo:
+	
+	\begin{center}
+		\begin{LARGE}
+			[ \_, \_, \_, \_, \_, \_, \_, \_ ]
+		\end{LARGE}
+	\end{center}
+	
+	Para você saber onde colocar ou encontrar algo, você usa uma função de hash. Essa função:
+	
+	\begin{itemize}
+		\item recebe a chave
+		\item aplica algum cálculo
+		\item devolve um número
+		\item esse número é usado como posição no array
+	\end{itemize}
+	
+	Exemplos simples:
+	
+	
+	\begin{center}
+		
+		\includegraphics[width=12cm,height=7cm,keepaspectratio=false]{imagens/tabela_hash.png}
+		
+	\end{center}
+	
+	Isso é extremamente eficiente, pois ao buscar por "João", você roda a hash da palavra "João" e ela te devolve 5, ai você vai diretamente no indice 5 e encontra o que você quer
+	
+	\section{As colisões}
+	
+	Um problema que pode acontecer são duas chaves gerar o mesmo hash. Exemplo:
+	
+		
+	\begin{center}
+		
+		\includegraphics[width=8cm,height=6cm,keepaspectratio=false]{imagens/tabela_hash_colisao.png}
+		
+	\end{center}
+	
+	Isso pode acontecer porque a tabela hash tem tamanho limitado, mas você tem infinitas chaves possiveis
 	
 \end{document}
 
