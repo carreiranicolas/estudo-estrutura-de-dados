@@ -2009,7 +2009,168 @@ int main(void) {
 	
 	\subsection{Funcionamento}
 	
-	Assim, nós teremos as rotações que buscarão corrigir o fator de balanceamento (ou fb), que é a diferença entre a altura da subarvore à esquerda - a altura da subarvore à direita
+	Assim, nós teremos as rotações que buscarão corrigir o fator de balanceamento (ou fb), que é a diferença entre a altura da subarvore à esquerda - a altura da subarvore à direita. Veja a imagem abaixo:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=7cm,keepaspectratio=false]{imagens/arvores_avl_fb.png}
+		
+	\end{center}
+	
+	Acima, perceba que o fator de balanceamento é igual a 2. Isso acontece porque a altura da árvore da esquerda é 3 e a altura da árvore à direita é 1, ou seja 3 - 1 = 2. Dessa forma, perceba que precisamos balancear a árvore, uma vez que o fator de balanceamento deve ser 1, 0 ou -1. Para isso, vamos aplicar as rotações
+	
+	\subsection{Rotações}
+	
+	As rotações diferem entre si pelo sentido da inclinação entre o nó pai e filho
+	
+	\begin{itemize}
+		\item Rotação simples: 	O nó desbalanceado (pai), seu filho e o seu neto estão todos no mesmo sentido de inclinação. Existe a rotação simples à direita (LL) e rotação dupla à esquerda (RR)
+		\item Rotação dupla: O nó desbalanceado (pai) e seu filho estão inclinados no sentido inverso ao neto (equivale a duas rotações simples). Existe a rotação dupla à direita (LR) e rotação dupla à esquerda (RL)
+	\end{itemize}
+	
+	\subsubsection{Rotação LL (simples à direita)}
+	Considerando um exemplo onde A é o nó desbalanceado, o que acontece é que um novo nó é inserido na sub-árvore da esquerda do filho esquerdo de A
+	
+	Ou seja, é necessário fazer uma rotação à direita, de modo que o nó intermediário B
+	ocupe o lugar de A, e A se torne a sub-árvore direita de B. Veja abaixo:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_ll.png}
+		
+	\end{center}
+
+	Agora veja outro exemplo:
+	
+		
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_ll2.png}
+		
+	\end{center}
+	
+	A árvore balanceada:
+	
+			
+	\begin{center}
+		
+		\includegraphics[width=6cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_ll3.png}
+		
+	\end{center}
+	
+	
+	
+	\subsubsection{Rotação RR (simples à esquerda)}
+	
+	Considerando um exemplo onde A é o nó desbalanceado, o que acontece é que um novo nó é inserido na sub-árvore da direita do filho direito de A
+	
+	Ou seja, é necessário fazer uma rotação à esquerda, de modo que o nó intermediário B
+    ocupe o lugar de A, e A se torne a sub-árvore esquerda de B. Veja abaixo:
+    
+    			
+    \begin{center}
+    	
+    	\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_rr.png}
+    	
+    \end{center}
+	
+	Agora veja um outro exemplo:
+	
+	    			
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_rr2.png}
+		
+	\end{center}
+	
+	
+	A árvore balanceada
+	
+		    			
+	\begin{center}
+		
+		\includegraphics[width=6cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_rr3.png}
+		
+	\end{center}
+	
+	\subsubsection{Rotação LR (rotação dupla à direita)}
+	
+	Suponhamos que um novo nó é inserido na sub-árvore da direita do filho esquerdo de A, assim, o nó A fica desbalanceado. 
+	
+	Ou seja, precisamos balancear isso, mas para isso, vamos utilizar um movimento para esquerda e outro para direita (LEFT, RIGHT), utilizando assim a rotação dupla, de modo que o nó C se torne o pai dos nós A (filho da direita) e B (filho da esquerda)
+	
+	Assim, vamos utilizar um rotação RR (à esquerda) em B e uma rotação LL (à direita)em A . Veja abaixo:
+	
+	Veja um outro exemplo abaixo:
+	
+		    			
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_lr.png}
+		
+	\end{center}
+	
+	Arvore depois de aplicar a rotação RR no nó B:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_lr2.png}
+		
+	\end{center}
+	
+	
+	Arvore depois de aplicar a rotação LL no nó A e por consequencia balanceando a árvore:
+	
+		
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_lr3.png}
+		
+	\end{center}
+	
+	\subsubsection{Rotação RL}
+	Suponhamos que um novo nó é inserido na sub-árvore da esquerda do filho direito de A, assim, o nó A fica desbalanceado.
+	
+	
+	Ou seja, precisamos balancear isso, mas para isso, vamos utilizar um movimento para direita e outro para esquerda (RIGHT, LEFT), utilizando assim a rotação dupla, de modo que o nó C se torne o pai dos nós A (filho da esquerda) e B (filho da direita)
+	
+	Assim, vamos utilizar um rotação LL (à direita) em B e uma rotação RR (à esquerda)em A. Veja abaixo:
+	
+	Veja um outro exemplo abaixo:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_rl.png}
+		
+	\end{center}
+	
+	Arvore depois de aplicar a rotação LL no nó C:
+	
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_rl2.png}
+		
+	\end{center}
+	
+	Arvore depois de aplicar a rotação RR no nó A e por consequencia balanceando a árvore:
+	
+		
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_rl3.png}
+		
+	\end{center}
+	
+	\subsubsection{Macete para as rotações}
+	
+			
+	\begin{center}
+		
+		\includegraphics[width=10cm,height=6cm,keepaspectratio=false]{imagens/arvores_avl_macete_rotacoes.png}
+		
+	\end{center}
+	
+	 	
 	
 	\chapter{Tabela Hash}
 	\section{Conceito}
