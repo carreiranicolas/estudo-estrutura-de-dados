@@ -107,7 +107,7 @@
 	Como falamos anteriormente na parte de variaveis, quando vamos defini-las, nós temos que declarar o tipo de dado da variavel. O tipo de dado define os valores que aquela variavel pode assumir e as operações que podem ser realizadas com ela.
 	Os tipos de dados principais são: char, int, float e double
 	\subsubsection{Char}
-	Um byte que armazena
+	Um byte que armazena o código de um caractere do conjunto de caracteres local
 	\subsubsection{Int}
 	Um inteiro cujo o tamanho do numero que pode ser alcançado depende do processador (tipicamente 16 ou 32 bits)
 	\subsubsection{Float}
@@ -182,7 +182,7 @@
 	
 	\begin{LARGE}
 		\begin{center}
-			printf("porcentagemd", variavel);
+			printf("\%d", variavel);
 		\end{center}
 	\end{LARGE}
 	
@@ -213,14 +213,14 @@
 	\subsection{Contantes}
 	Assim como variaveis, constantes também armazenam um valor na memória do computador. A principal diferença para as variaveis é que esse valor não será alterado. Outra coisa é que para as constantes é obrigatoria a atribuição de valor, diferente das variaveis que podemos simplesmente declará-las sem dar um valor
 	\subsubsection{Declaração de constantes}
-	Para declarar uma constante existem duas formas. Na primeira, devemos  utilizar define nome-costante <valor> no começo do programa. Uma detalhe é que neste caso, não usaremos ponto e virgula no final. Veja:
+	Para declarar uma constante existem duas formas. Na primeira, devemos  utilizar \#define nome-costante <valor> no começo do programa, ANTES DO INICIO DO CÓDIGO. Uma detalhe é que neste caso, não usaremos ponto e virgula no final. Veja:
 	
 	\begin{center}
 		
 		\includegraphics[width=5cm,height=4cm,keepaspectratio=false]{imagens/define.png}
 	\end{center}
 	
-	Outra forma é fazer: const <tipo> nome = valor;. Como você pôde ver, nesse caso, temos que usar o ponto e vírgula. Veja:
+	Outra forma é fazer: const <tipo> nome = valor;. Como você pôde ver, nesse caso, temos que usar o ponto e vírgula e não precisa estar antes do inicio do código. Veja:
 	
 	\begin{center}
 	
@@ -371,6 +371,8 @@
 		\end{lstlisting}
 	\end{center}
 	
+
+	
 	\subsubsection{Swicth-case}
 	O switch-case é outra estrutura de controle de fluxo de código. Sua estrutura é a seguinte:
 	
@@ -394,13 +396,82 @@
 		\end{lstlisting}
 	\end{center}
 	
-	O o switch, como podemos ver acima é próprio para testar uma variavel em relação a diversos valores pré-estabelecidos. Além disso, como podemos ver acima o default irá desempenhar o valor que o else desempenha na estrutura if-else
+	O o switch, como podemos ver acima é próprio para testar uma variavel em relação a diversos valores pré-estabelecidos. Além disso, como podemos ver acima o default irá desempenhar o valor que o else desempenha na estrutura if-else. Veja um exemplo:
+	
+		
+	\begin{center}
+		\includegraphics[width=7cm]{imagens/switch-case.png}
+	\end{center}
+	
+	
 	\subsection{Loops}
 	Agora falando sobre loops, o nome já entrega. Os loops serão responsáveis por repetir um bloco de código a partir de uma condição. Enquanto a condição for verdadeira, o bloco de código permanecerá se repetindo. Existem diferentes tipos de loops. Vamos a cada um deles.
 	
 	\subsubsection{While}
+	
+	Significa basicamente "enquanto". Enquanto a condição for verdadeira, ele excutará o loop. Veja como é a sintaxe:
+	
+	\begin{center}
+		
+		\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+			
+		while(condicao){
+			sequencia de comandos;
+		}
+			
+		\end{lstlisting}
+	\end{center}
+	
+	
+	
+	OBS: É importante tomar cuidado para não criar uma condição que seja sempre verdadeira, pois isso geraria um loop infinito 
+	
 	\subsubsection{Do-While}
+	
+	Esse loop é interessante, pois ele irá executar um bloco de código ao menos uma vez e se a condição no while for verdadeira, ele seguirá executando o bloco de código. A diferença do "do-while" para o "while" é que se a condição já for falsa de inicio, o "while" nem será executado, diferentemente do "do-while", que executa pelo menos uma vez, mesmo com a condição sendo inicialmente falsa. Veja a sintaxe:
+	
+		
+	\begin{center}
+		
+	\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+			
+			do{
+				sequencia de comandos;
+			}
+			while(condicao)
+				
+		\end{lstlisting}
+	\end{center}
+	
+	
+	Obviamente que assim como o loop while, se a condição for sempre verdadeira, ele executará para sempre
+	
 	\subsubsection{For}
+	
+	O loop for é usado para repetir um número já controlado de vezes. Veja sua sintaxe:
+	
+	\begin{center}	
+	\begin{lstlisting}{caption=casting explicito em C, language=C, label=clanguage}
+		
+		for(inicializcao; condicao; incremento){
+			sequencia de comandos;
+		}
+		
+	\end{lstlisting}
+	\end{center}
+	
+	Perceba que temos alguns comandos que passamos para o for, sendo eles:
+	
+	\begin{itemize}
+		\item Inicializacao: iniciar variáveis (contador).
+		\item Condicao: avalia a condição. Se verdadeiro, executa comandos do bloco, senão encerra laço.
+		\item Incremento: ao término do bloco de comandos, incrementa o valor do contado
+	\end{itemize}
+	
+	Perceba então que o loop for executa um número controlado de vezes, a partir do seu contador que passamos na sua iniciliazação
+	
+	
+	
 	\subsection{Arrays}
 	Quando vimos sobre variaveis, estudamos que elas podem armazenar um valor. Sempre que tentamos armazenar um novo valor dentro da variavel o antigo valor é sobrescrito (e portanto, perdido). Agora, pense: E se quisessemos armazenar mais de um valor em uma variavel? Para isso, usamos os arrays, que é basicamente uma sequencia de elementos do mesmo tipo, onde cada elemento é identificado por um indice. Ou seja, quando criamos um array, nós alocamos um espaço na memória (onde, quanto maior o tamanho do array, que é a quantidade de elementos que ele pode armazenar, maior o espaço de memoria alocado) e podemos armazenar dentro dele varios valores do mesmo tipo (os valores podem ser acessados por meio do indice do elemento dentro do array, que é basicamente a posição do elemento lá dentro). Um exemplo que pode fazer você entender melhor é: suponhamos que queiramos armazenar em um local a nota de 5 alunos. Para isso, poderiamos usar um array.
 	\subsubsection{Declaração de arrays}
